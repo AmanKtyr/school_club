@@ -77,56 +77,34 @@ function initScrollProgress() {
  */
 function initNavigation() {
     const navbar = document.getElementById('navbar');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    
-    // Scroll effect
+    const allNavLinks = document.querySelectorAll('a[href^="#"]');
+    const mobileMenu = document.querySelector('details.dropdown');
+
+    // Scroll effect for navbar
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
-            navbar.classList.add('nav-scrolled');
+            navbar.classList.add('navbar-active');
         } else {
-            navbar.classList.remove('nav-scrolled');
+            navbar.classList.remove('navbar-active');
         }
     });
-    
-    // Smooth scroll for navigation links
-    navLinks.forEach(link => {
+
+    // Smooth scroll for all anchor links
+    allNavLinks.forEach(link => {
         link.addEventListener('click', function(e) {
+            e.preventDefault();
             const targetId = this.getAttribute('href');
-            
-            if (targetId.startsWith('#')) {
-                e.preventDefault();
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - 80;
-                    
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (mobileMenu && mobileMenu.classList.contains('active')) {
-                        toggleMobileMenu();
-                    }
-                }
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+            }
+
+            // If the link is inside the mobile menu, close the menu
+            if (mobileMenu && mobileMenu.hasAttribute('open') && mobileMenu.contains(link)) {
+                mobileMenu.removeAttribute('open');
             }
         });
     });
-    
-    // Mobile menu toggle
-    if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileMenu.classList.contains('active')) {
-                toggleMobileMenu();
-            }
-        });
-    }
 }
 
 /**

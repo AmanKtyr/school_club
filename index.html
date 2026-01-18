@@ -25,8 +25,6 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="style.css">
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     
@@ -36,435 +34,388 @@
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    
+    <style>
+        /* Custom CSS only for animations and scroll progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+        
+        .navbar-active {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+        }
+        
+        .feature-card, .industry-card, .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .industry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Custom animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 font-['Inter']">
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-4">
+    <!--  Navigation -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-sm fixed top-0 z-50 border-b border-gray-100 transition-all duration-300 w-full" id="navbar">
+    <div class="navbar container mx-auto px-4 py-2">
+            <!-- Logo Section -->
             <div class="navbar-start">
-                <div class="dropdown lg:hidden">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-                        <i class="fas fa-bars text-xl"></i>
-                    </div>
-                    <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow-2xl bg-base-100 rounded-2xl w-72">
-                        <li><a href="#home" class="font-medium">Home</a></li>
-                        <li><a href="#features" class="font-medium">Features</a></li>
-                        <li><a href="#solutions" class="font-medium">Solutions</a></li>
-                        <li><a href="#modules" class="font-medium">Modules</a></li>
-                        <li><a href="#pricing" class="font-medium">Pricing</a></li>
-                        <li><a href="#testimonials" class="font-medium">Testimonials</a></li>
-                        <li><a href="#contact" class="font-medium">Contact</a></li>
-                    </ul>
-                </div>
-                <a href="#home" class="flex items-center gap-3 px-4">
-                    <div class="bg-gradient-to-br from-blue-700 to-blue-500 text-white rounded-xl w-12 h-12 flex items-center justify-center shadow-lg">
-                        <i class="fas fa-school text-2xl"></i>
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 px-4 hover:opacity-90 transition-opacity">
+                    <div class="bg-gradient-to-br from-blue-600 to-blue-800 text-white rounded-2xl w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center shadow-lg">
+                        <i class="fas fa-school text-xl lg:text-2xl"></i>
                     </div>
                     <div>
-                        <div class="text-xl font-bold bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
+                        <div class="text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
                             School Club
                         </div>
-                        <div class="text-xs text-gray-600">School ERP Software</div>
+                        <!-- <div class="text-xs text-gray-600 font-medium">AI-Powered School ERP</div> -->
                     </div>
                 </a>
             </div>
 
+            <!-- Desktop Navigation Menu -->
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal px-1 gap-1">
-                    <li><a href="#home" class="font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-2">Home</a></li>
-                    <li><a href="#features" class="font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-2">Features</a></li>
-                    <li><a href="#solutions" class="font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-2">Solutions</a></li>
-                    <li><a href="#modules" class="font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-2">Modules</a></li>
-                    <li><a href="#pricing" class="font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-2">Pricing</a></li>
-                    <li><a href="#testimonials" class="font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-2">Testimonials</a></li>
-                    <li><a href="#contact" class="font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-2">Contact</a></li>
+                    <li><a href="#home" class="font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl px-4 py-3 transition-all duration-300"><i class="fas fa-home mr-2 text-blue-500"></i>Home</a></li>
+                    <li><a href="#features" class="font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl px-4 py-3 transition-all duration-300"><i class="fas fa-star mr-2 text-green-500"></i>Features</a></li>
+                    <li><a href="#solutions" class="font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl px-4 py-3 transition-all duration-300"><i class="fas fa-cogs mr-2 text-purple-500"></i>Solutions</a></li>
+                    <li><a href="#pricing" class="font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl px-4 py-3 transition-all duration-300"><i class="fas fa-tag mr-2 text-red-500"></i>Pricing</a></li>
+                    <li><a href="#testimonials" class="font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl px-4 py-3 transition-all duration-300"><i class="fas fa-quote-left mr-2 text-amber-500"></i>Testimonials</a></li>
+                    <li><a href="#contact" class="font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl px-4 py-3 transition-all duration-300"><i class="fas fa-envelope mr-2 text-cyan-500"></i>Contact</a></li>
                 </ul>
             </div>
 
-            <div class="navbar-end hidden lg:flex gap-3">
-                <a href="tel:+9118001234567" class="btn btn-outline btn-primary">
-                    <i class="fas fa-phone mr-2"></i>Call Now
-                </a>
-                <a href="#demo" class="btn bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800">
-                    <i class="fas fa-calendar-check mr-2"></i>Book Free Demo
-                </a>
+            <!-- CTA Buttons -->
+            <div class="navbar-end">
+                <!-- Desktop CTA Buttons -->
+                <div class="hidden lg:flex gap-2">
+                    <a href="portal.schoolclub.in" class="btn btn-outline btn-primary gap-2 rounded-xl hover:shadow-lg transition-all" target="_blank">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                    <a href="#contact" class="btn bg-gradient-to-r from-blue-600 to-blue-700 text-white gap-2 rounded-xl hover:from-blue-700 hover:to-blue-800 hover:shadow-lg transition-all">
+                        <i class="fas fa-play-circle"></i>
+                        Free Demo
+                    </a>
+                </div>
+
+                <!-- Mobile Menu & Login -->
+                <div class="lg:hidden flex items-center gap-2">
+                    <a href="portal.schoolclub.in" class="btn btn-primary btn-sm gap-2 rounded-xl" target="_blank">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login</span>
+                    </a>
+                    <!-- Mobile Menu Button -->
+                    <details class="dropdown dropdown-end">
+                        <summary tabindex="0" class="btn btn-ghost btn-circle hover:bg-blue-50 transition-colors" id="mobileMenuBtn">
+                            <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                            <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </summary>
+                        <ul tabindex="0" class="menu menu-lg dropdown-content mt-3 z-[1] p-6 shadow-2xl bg-white rounded-box w-80 space-y-2">
+                            <li><a href="#home" class="font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-3"><i class="fas fa-home mr-3 text-blue-500"></i>Home</a></li>
+                            <li><a href="#features" class="font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-3"><i class="fas fa-star mr-3 text-green-500"></i>Features</a></li>
+                            <li><a href="#solutions" class="font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-3"><i class="fas fa-cogs mr-3 text-purple-500"></i>Solutions</a></li>
+                            <li><a href="#pricing" class="font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-3"><i class="fas fa-tag mr-3 text-red-500"></i>Pricing</a></li>
+                            <li><a href="#testimonials" class="font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-3"><i class="fas fa-quote-left mr-3 text-amber-500"></i>Testimonials</a></li>
+                            <li><a href="#contact" class="font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg px-4 py-3"><i class="fas fa-envelope mr-3 text-cyan-500"></i>Contact</a></li>
+                            
+                            <!-- Mobile CTA Buttons -->
+                            <div class="divider my-4"></div>
+                            <li><a href="tel:+9118001234567" class="btn btn-primary w-full mb-2"><i class="fas fa-phone mr-2"></i>Call Now</a></li>
+                            <li><a href="portal.schoolclub.in" class="btn btn-outline btn-primary w-full" target="_blank"><i class="fas fa-sign-in-alt mr-2"></i>Login</a></li>
+                        </ul>
+                    </details>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-  <section id="home" class="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-    <!-- Background Pattern -->
-    <div class="absolute inset-0 z-0 opacity-10">
-        <div class="absolute inset-0" style="background-image: url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-indigo-600/5"></div>
-        <div class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white to-transparent"></div>
-        <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-white to-transparent"></div>
-    </div>
+    <section id="home" class="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50 pt-20">
+        <div class="absolute inset-0 z-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;"></div>
+        </div>
 
-    <!-- Animated Background Elements -->
-    <div class="absolute inset-0 z-0 overflow-hidden">
-        <div class="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
-        <div class="absolute top-1/2 left-1/4 w-64 h-64 bg-cyan-400/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
         
-        <!-- Geometric Patterns -->
-        <div class="absolute top-10 right-32 w-16 h-16 border-2 border-blue-200/30 rounded-lg rotate-45"></div>
-        <div class="absolute bottom-32 left-24 w-12 h-12 border-2 border-indigo-200/30 rounded-full"></div>
-        <div class="absolute top-40 right-1/4 w-8 h-8 border border-blue-300/20 rounded-lg rotate-12"></div>
-    </div>
-    
-    <div class="container relative z-10 mx-auto px-4 py-8 lg:py-20">
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <!-- Left Content -->
-            <div class="lg:pr-8" data-aos="fade-right" data-aos-duration="1000">
-                <!-- Trust Badges -->
-                <div class="flex flex-wrap gap-3 mb-8">
-                    <div class="bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 inline-flex items-center gap-2 shadow-lg border border-gray-200">
-                        <div class="w-6 h-6 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-award text-white text-xs"></i>
+        <div class="container relative z-10 mx-auto px-4 py-8 lg:py-20">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                <!-- Left Content -->
+                <div class="lg:pr-8" data-aos="fade-right" data-aos-duration="1000">
+                    <!-- Trust Badges -->
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <div class="bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 inline-flex items-center gap-2 shadow-lg border border-gray-200">
+                            <div class="w-6 h-6 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-award text-white text-xs"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-800">Trusted by 3,500+ Schools</span>
                         </div>
-                        <span class="text-sm font-semibold text-gray-800">Trusted by 3500+ Schools</span>
-                    </div>
-                    <div class="bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 inline-flex items-center gap-2 shadow-lg border border-gray-200">
-                        <div class="w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-shield-alt text-white text-xs"></i>
+                        <div class="bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 inline-flex items-center gap-2 shadow-lg border border-gray-200">
+                            <div class="w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white text-xs"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-800">ISO 27001 Certified</span>
                         </div>
-                        <span class="text-sm font-semibold text-gray-800">ISO 27001 Certified</span>
                     </div>
-                    <div class="bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 inline-flex items-center gap-2 shadow-lg border border-gray-200">
-                        <div class="w-6 h-6 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-clock text-white text-xs"></i>
-                        </div>
-                        <span class="text-sm font-semibold text-gray-800">99.9% Uptime</span>
-                    </div>
-                </div>
 
-                <!-- Main Headline -->
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                    <span class="block text-gray-900">Transform Your School</span>
-                    <span class="block mt-3 bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
-                        With Smart ERP Software
-                    </span>
-                </h1>
-                
-                <!-- Subtitle -->
-                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl">
-                    India's most comprehensive school management platform. Streamline operations, enhance learning outcomes, and drive institutional growth with our all-in-one solution.
-                </p>
-                
-                <!-- Key Features Grid -->
-                <div class="grid grid-cols-2 gap-4 mb-10">
-                    <div class="flex items-center gap-3 p-3 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-sm">
-                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md">
-                            <i class="fas fa-layer-group text-white"></i>
+                    <!-- Main Headline -->
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        <span class="block text-gray-900">Transform Your Educational Institution</span>
+                        <span class="block mt-3 bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
+                            With Intelligent School ERP
+                        </span>
+                    </h1>
+                    
+                    <!-- Subtitle -->
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl">
+                        Streamline academic operations, enhance administrative efficiency, and elevate learning outcomes with India's most comprehensive school management platform. Experience seamless digital transformation tailored for educational excellence.
+                    </p>
+                    
+                    <!-- Key Features Grid -->
+                    <div class="grid grid-cols-2 gap-4 mb-10">
+                        <div class="flex items-center gap-3 p-3 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-sm">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md">
+                                <i class="fas fa-layer-group text-white"></i>
+                            </div>
+                            <span class="font-medium text-gray-800">50+ Integrated Modules</span>
                         </div>
-                        <span class="font-medium text-gray-800">50+ Integrated Modules</span>
-                    </div>
-                    <div class="flex items-center gap-3 p-3 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-sm">
-                        <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center shadow-md">
-                            <i class="fas fa-graduation-cap text-white"></i>
+                        <div class="flex items-center gap-3 p-3 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-sm">
+                            <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center shadow-md">
+                                <i class="fas fa-graduation-cap text-white"></i>
+                            </div>
+                            <span class="font-medium text-gray-800">Multi-Board Compliance</span>
                         </div>
-                        <span class="font-medium text-gray-800">All Boards Supported</span>
-                    </div>
-                    <div class="flex items-center gap-3 p-3 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-sm">
-                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
-                            <i class="fas fa-mobile-alt text-white"></i>
+                        <div class="flex items-center gap-3 p-3 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-sm">
+                            <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
+                                <i class="fas fa-mobile-alt text-white"></i>
+                            </div>
+                            <span class="font-medium text-gray-800">Mobile Applications</span>
                         </div>
-                        <span class="font-medium text-gray-800">Mobile App Included</span>
-                    </div>
-                    <div class="flex items-center gap-3 p-3 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-sm">
-                        <div class="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center shadow-md">
-                            <i class="fas fa-lock text-white"></i>
-                        </div>
-                        <span class="font-medium text-gray-800">Bank-Grade Security</span>
-                    </div>
-                </div>
-                
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                    <a href="#demo" class="group relative btn bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:from-blue-700 hover:to-blue-800 transform hover:-translate-y-1">
-                        <div class="flex items-center justify-center">
-                            <i class="fas fa-play-circle mr-3 text-xl"></i>
-                            <span>Start Free 30-Day Trial</span>
-                        </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                            No credit card required
-                        </div>
-                    </a>
-                    <a href="#features" class="btn bg-white text-gray-800 border-2 border-gray-300 font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:border-blue-500 hover:text-blue-600">
-                        <i class="fas fa-eye mr-3"></i>
-                        Explore Features
-                    </a>
-                </div>
-                
-                <!-- Trust Indicators -->
-                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg">
-                    <div class="grid grid-cols-3 gap-4">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">15+</div>
-                            <div class="text-sm text-gray-600 font-medium">Years Experience</div>
-                        </div>
-                        <div class="text-center border-x border-gray-200/50">
-                            <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">3500+</div>
-                            <div class="text-sm text-gray-600 font-medium">Schools Trust Us</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">24/7</div>
-                            <div class="text-sm text-gray-600 font-medium">Premium Support</div>
+                        <div class="flex items-center gap-3 p-3 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-sm">
+                            <div class="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center shadow-md">
+                                <i class="fas fa-lock text-white"></i>
+                            </div>
+                            <span class="font-medium text-gray-800">Enterprise Security</span>
                         </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Right Image/Dashboard -->
-            <div class="relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                <div class="relative z-10">
-                    <!-- Main Dashboard Card -->
-                    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 transform hover:scale-[1.02] transition-transform duration-500">
-                        <!-- Dashboard Header -->
-                        <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-4">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-3 h-3 bg-red-400 rounded-full"></div>
-                                    <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                                    <div class="w-3 h-3 bg-green-400 rounded-full"></div>
-                                    <span class="text-white font-semibold ml-3">SchoolClub Dashboard</span>
-                                </div>
-                                <div class="text-sm text-blue-100">Live Data • Updated Now</div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <a href="#demo" class="group relative btn bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:from-blue-700 hover:to-blue-800 transform hover:-translate-y-1">
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-play-circle mr-3 text-xl"></i>
+                                <span>Start Free 30-Day Trial</span>
+                            </div>
+                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-xs text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                                No credit card required
+                            </div>
+                        </a>
+                        <a href="#features" class="btn bg-white text-gray-800 border-2 border-gray-300 font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:border-blue-500 hover:text-blue-600">
+                            <i class="fas fa-eye mr-3"></i>
+                            Explore Features
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">15+</div>
+                                <div class="text-sm text-gray-600 font-medium">Years Experience</div>
+                            </div>
+                            <div class="text-center border-x border-gray-200/50">
+                                <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">3500+</div>
+                                <div class="text-sm text-gray-600 font-medium">Schools Trust Us</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">24/7</div>
+                                <div class="text-sm text-gray-600 font-medium">Premium Support</div>
                             </div>
                         </div>
-                        
-                        <!-- Stats Overview -->
-                        <div class="p-6">
-                            <div class="grid grid-cols-2 gap-4 mb-6">
-                                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
-                                    <div class="flex items-center justify-between">
-                                        <div>
-                                            <div class="text-sm text-blue-600 font-medium mb-1">Total Students</div>
-                                            <div class="text-2xl font-bold text-gray-900">2,847</div>
-                                        </div>
-                                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                            <i class="fas fa-users text-blue-600 text-xl"></i>
-                                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Image/Dashboard -->
+                <div class="relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="relative z-10">
+                        <!-- Main Dashboard Card -->
+                        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 transform hover:scale-[1.02] transition-transform duration-500">
+                            <!-- Dashboard Header -->
+                            <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                                        <span class="text-white font-semibold ml-3">SchoolClub Dashboard</span>
                                     </div>
-                                    <div class="text-xs text-green-600 font-medium mt-2 flex items-center gap-1">
-                                        <i class="fas fa-arrow-up"></i>
-                                        <span>12% increase this month</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-4 border border-green-200">
-                                    <div class="flex items-center justify-between">
-                                        <div>
-                                            <div class="text-sm text-green-600 font-medium mb-1">Fee Collection</div>
-                                            <div class="text-2xl font-bold text-gray-900">94%</div>
-                                        </div>
-                                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                                            <i class="fas fa-rupee-sign text-green-600 text-xl"></i>
-                                        </div>
-                                    </div>
-                                    <div class="text-xs text-green-600 font-medium mt-2 flex items-center gap-1">
-                                        <i class="fas fa-arrow-up"></i>
-                                        <span>8% increase this month</span>
-                                    </div>
+                                    <div class="text-sm text-blue-100">Live Data • Updated Now</div>
                                 </div>
                             </div>
                             
-                            <!-- Activity Section -->
-                            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                                <div class="flex items-center justify-between mb-4">
-                                    <h4 class="font-semibold text-gray-800">Recent Activities</h4>
-                                    <span class="text-sm text-blue-600 font-medium cursor-pointer hover:text-blue-700 transition-colors">
-                                        View All <i class="fas fa-arrow-right ml-1"></i>
-                                    </span>
-                                </div>
-                                
-                                <div class="space-y-3">
-                                    <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-blue-200 transition-colors">
-                                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                            <i class="fas fa-user-plus text-blue-600"></i>
+                            <!-- Stats Overview -->
+                            <div class="p-6">
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div class="text-sm text-blue-600 font-medium mb-1">Total Students</div>
+                                                <div class="text-2xl font-bold text-gray-900">2,847</div>
+                                            </div>
+                                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                                <i class="fas fa-users text-blue-600 text-xl"></i>
+                                            </div>
                                         </div>
-                                        <div class="flex-1">
-                                            <div class="text-sm font-medium text-gray-800">New Admission</div>
-                                            <div class="text-xs text-gray-500">Rohan Kumar • Class 10</div>
+                                        <div class="text-xs text-green-600 font-medium mt-2 flex items-center gap-1">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span>12% increase this month</span>
                                         </div>
-                                        <span class="text-xs text-gray-400">2 min ago</span>
                                     </div>
                                     
-                                    <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-green-200 transition-colors">
-                                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                            <i class="fas fa-check-circle text-green-600"></i>
+                                    <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-4 border border-green-200">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div class="text-sm text-green-600 font-medium mb-1">Fee Collection</div>
+                                                <div class="text-2xl font-bold text-gray-900">94%</div>
+                                            </div>
+                                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                                <i class="fas fa-rupee-sign text-green-600 text-xl"></i>
+                                            </div>
                                         </div>
-                                        <div class="flex-1">
-                                            <div class="text-sm font-medium text-gray-800">Fee Paid Successfully</div>
-                                            <div class="text-xs text-gray-500">₹15,000 • Priya Sharma</div>
+                                        <div class="text-xs text-green-600 font-medium mt-2 flex items-center gap-1">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span>8% increase this month</span>
                                         </div>
-                                        <span class="text-xs text-gray-400">10 min ago</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Activity Section -->
+                                <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="font-semibold text-gray-800">Recent Activities</h4>
+                                        <span class="text-sm text-blue-600 font-medium cursor-pointer hover:text-blue-700 transition-colors">
+                                            View All <i class="fas fa-arrow-right ml-1"></i>
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="space-y-3">
+                                        <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-blue-200 transition-colors">
+                                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                                <i class="fas fa-user-plus text-blue-600"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="text-sm font-medium text-gray-800">New Admission</div>
+                                                <div class="text-xs text-gray-500">Rohan Kumar • Class 10</div>
+                                            </div>
+                                            <span class="text-xs text-gray-400">2 min ago</span>
+                                        </div>
+                                        
+                                        <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-green-200 transition-colors">
+                                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                                <i class="fas fa-check-circle text-green-600"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="text-sm font-medium text-gray-800">Fee Paid Successfully</div>
+                                                <div class="text-xs text-gray-500">₹15,000 • Priya Sharma</div>
+                                            </div>
+                                            <span class="text-xs text-gray-400">10 min ago</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-blue-400 to-cyan-300 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
+                    <div class="absolute -bottom-6 -left-6 w-28 h-28 bg-gradient-to-br from-indigo-400 to-purple-300 rounded-3xl blur-2xl opacity-30 animate-pulse" style="animation-delay: 1.5s;"></div>
                 </div>
-                
-                <!-- Floating Elements -->
-                <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-blue-400 to-cyan-300 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
-                <div class="absolute -bottom-6 -left-6 w-28 h-28 bg-gradient-to-br from-indigo-400 to-purple-300 rounded-3xl blur-2xl opacity-30 animate-pulse" style="animation-delay: 1.5s;"></div>
-                
-                <!-- Awards/Certificates -->
-                <div class="absolute -bottom-8 right-8 bg-white rounded-xl shadow-lg p-4 border border-gray-200 transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-trophy text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <div class="text-sm font-bold text-gray-900">Best ERP 2024</div>
-                            <div class="text-xs text-gray-500">EdTech Awards</div>
-                        </div>
-                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <div class="py-12 lg:py-16 bg-gradient-to-b from-white to-gray-50">
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center mb-10 lg:mb-12">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-4">
+                    <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                    <span class="text-sm font-semibold text-blue-700 uppercase tracking-wide">TRUSTED PARTNERSHIP</span>
+                </div>
+                <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
+                    Trusted by <span class="text-blue-600">Leading Educational Institutions Nationwide</span>
+                </h3>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Join over 3,500 premier educational institutions across India that rely on School Club for comprehensive digital transformation and operational excellence.
+                </p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10 lg:mb-12">
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">500+</div>
+                    <div class="text-sm font-semibold text-gray-800 mb-1">CBSE Schools</div>
+                    <div class="text-xs text-gray-500">Premier Educational Institutions</div>
+                </div>
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-3xl lg:text-4xl font-bold text-green-600 mb-2">300+</div>
+                    <div class="text-sm font-semibold text-gray-800 mb-1">ICSE Schools</div>
+                    <div class="text-xs text-gray-500">Pan-India Network</div>
+                </div>
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-3xl lg:text-4xl font-bold text-purple-600 mb-2">2,500+</div>
+                    <div class="text-sm font-semibold text-gray-800 mb-1">State Board Schools</div>
+                    <div class="text-xs text-gray-500">Across 28 States & Union Territories</div>
+                </div>
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-3xl lg:text-4xl font-bold text-orange-600 mb-2">200+</div>
+                    <div class="text-sm font-semibold text-gray-800 mb-1">International Schools</div>
+                    <div class="text-xs text-gray-500">Global Curriculum Institutions</div>
                 </div>
             </div>
         </div>
     </div>
-    
-  
-
-<!-- Trusted By Section -->
-<div class="py-12 lg:py-16 bg-gradient-to-b from-white to-gray-50">
-    <div class="container mx-auto px-4">
-        <!-- Section Header -->
-        <div class="text-center mb-10 lg:mb-12">
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-4">
-                <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
-                <span class="text-sm font-semibold text-blue-700 uppercase tracking-wide">Trusted Partner</span>
-            </div>
-            <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
-                Trusted by <span class="text-blue-600">Leading Educational Institutions</span>
-            </h3>
-            <p class="text-gray-600 max-w-2xl mx-auto">
-                Join 3,500+ schools across India that trust SchoolClub for their digital transformation
-            </p>
-        </div>
-
-        <!-- Stats Cards -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10 lg:mb-12">
-            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <div class="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">500+</div>
-                <div class="text-sm font-semibold text-gray-800 mb-1">CBSE Schools</div>
-                <div class="text-xs text-gray-500">Premium Institutions</div>
-            </div>
-            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <div class="text-3xl lg:text-4xl font-bold text-green-600 mb-2">300+</div>
-                <div class="text-sm font-semibold text-gray-800 mb-1">ICSE Schools</div>
-                <div class="text-xs text-gray-500">Nationwide Network</div>
-            </div>
-            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <div class="text-3xl lg:text-4xl font-bold text-purple-600 mb-2">2,500+</div>
-                <div class="text-sm font-semibold text-gray-800 mb-1">State Board</div>
-                <div class="text-xs text-gray-500">Across 28 States</div>
-            </div>
-            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <div class="text-3xl lg:text-4xl font-bold text-orange-600 mb-2">200+</div>
-                <div class="text-sm font-semibold text-gray-800 mb-1">International</div>
-                <div class="text-xs text-gray-500">Premium Schools</div>
-            </div>
-        </div>
-
-        <!-- Institution Types Grid -->
-        <div class="relative">
-            <!-- Background Pattern -->
-            <div class="absolute inset-0 opacity-5">
-                <div class="absolute top-1/4 left-10 w-20 h-20 bg-blue-200 rounded-full blur-2xl"></div>
-                <div class="absolute bottom-1/4 right-10 w-24 h-24 bg-green-200 rounded-full blur-2xl"></div>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative">
-                <!-- CBSE Schools -->
-                <div class="group bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300 hover:-translate-y-1">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-university text-2xl text-blue-600"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">CBSE Schools</h4>
-                        <p class="text-sm text-gray-600 mb-3">Fully compliant with CBSE guidelines and digital initiatives</p>
-                        <div class="text-xs font-medium text-blue-600 flex items-center gap-1">
-                            <span>500+ Schools</span>
-                            <i class="fas fa-arrow-right text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ICSE Schools -->
-                <div class="group bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg hover:border-green-300 transition-all duration-300 hover:-translate-y-1">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-graduation-cap text-2xl text-green-600"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">ICSE Schools</h4>
-                        <p class="text-sm text-gray-600 mb-3">Comprehensive solutions for ICSE curriculum management</p>
-                        <div class="text-xs font-medium text-green-600 flex items-center gap-1">
-                            <span>300+ Schools</span>
-                            <i class="fas fa-arrow-right text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- State Board -->
-                <div class="group bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg hover:border-purple-300 transition-all duration-300 hover:-translate-y-1">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-map-marker-alt text-2xl text-purple-600"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">State Board</h4>
-                        <p class="text-sm text-gray-600 mb-3">Customized for all 28 state education boards</p>
-                        <div class="text-xs font-medium text-purple-600 flex items-center gap-1">
-                            <span>2,500+ Schools</span>
-                            <i class="fas fa-arrow-right text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- International -->
-                <div class="group bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg hover:border-orange-300 transition-all duration-300 hover:-translate-y-1">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-globe text-2xl text-orange-600"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">International</h4>
-                        <p class="text-sm text-gray-600 mb-3">IB, IGCSE, and Cambridge curriculum support</p>
-                        <div class="text-xs font-medium text-orange-600 flex items-center gap-1">
-                            <span>200+ Schools</span>
-                            <i class="fas fa-arrow-right text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pre-Schools -->
-                <div class="group bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg hover:border-pink-300 transition-all duration-300 hover:-translate-y-1">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-child text-2xl text-pink-600"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">Pre-Schools</h4>
-                        <p class="text-sm text-gray-600 mb-3">Early childhood education management</p>
-                        <div class="text-xs font-medium text-pink-600 flex items-center gap-1">
-                            <span>500+ Schools</span>
-                            <i class="fas fa-arrow-right text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-       
-
-    </div>
-</div>
 
     <!-- Features Section -->
     <section id="features" class="py-20 bg-gray-50">
@@ -472,13 +423,13 @@
             <div class="text-center mb-16" data-aos="fade-up">
                 <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 rounded-full px-6 py-2 mb-6">
                     <i class="fas fa-star"></i>
-                    <span class="text-sm font-semibold">KEY FEATURES</span>
+                    <span class="text-sm font-semibold">COMPREHENSIVE FEATURES</span>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                    Everything You Need to Run Your School Efficiently
+                    Advanced Features for Modern Educational Management
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    A comprehensive suite of tools designed specifically for Indian educational institutions
+                    Discover a comprehensive suite of tools engineered to streamline operations, enhance learning outcomes, and drive institutional growth through innovative technology solutions.
                 </p>
             </div>
 
@@ -488,20 +439,20 @@
                     <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
                         <i class="fas fa-user-graduate text-2xl text-blue-600"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Student Lifecycle Management</h3>
-                    <p class="text-gray-600 mb-6">Complete management from inquiry to alumni with detailed profiles, attendance, and performance tracking.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Complete Student Lifecycle Management</h3>
+                    <p class="text-gray-600 mb-6">Seamlessly manage every student journey from initial inquiry through admission, academic progression, and eventual alumni status with comprehensive profiling and tracking capabilities.</p>
                     <ul class="space-y-2">
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Admission & Registration</span>
+                            <span>Streamlined Admission Processes</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Attendance Management</span>
+                            <span>Automated Attendance Systems</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Health Records</span>
+                            <span>Comprehensive Health Records</span>
                         </li>
                     </ul>
                 </div>
@@ -511,20 +462,20 @@
                     <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
                         <i class="fas fa-rupee-sign text-2xl text-green-600"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Fee Management System</h3>
-                    <p class="text-gray-600 mb-6">Automated fee collection, online payments, receipts, due reminders, and comprehensive financial reporting.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Intelligent Financial Management</h3>
+                    <p class="text-gray-600 mb-6">Transform your financial operations with automated fee collection systems, integrated payment gateways, intelligent reminders, and comprehensive financial analytics and reporting.</p>
                     <ul class="space-y-2">
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Online Payment Gateway</span>
+                            <span>Multiple Payment Gateway Integration</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Automatic Fee Reminders</span>
+                            <span>Automated Fee Collection Systems</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>GST Compliant Invoices</span>
+                            <span>GST-Compliant Financial Documentation</span>
                         </li>
                     </ul>
                 </div>
@@ -534,20 +485,20 @@
                     <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
                         <i class="fas fa-chalkboard-teacher text-2xl text-purple-600"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Academic Management</h3>
-                    <p class="text-gray-600 mb-6">Complete academic workflow including timetable, lesson plans, assessments, gradebooks, and report cards.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Comprehensive Academic Excellence Suite</h3>
+                    <p class="text-gray-600 mb-6">Revolutionize teaching and learning with advanced academic management tools including intelligent timetabling, lesson planning, assessment systems, and digital performance tracking.</p>
                     <ul class="space-y-2">
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Smart Timetable</span>
+                            <span>Dynamic Timetable Management</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Digital Report Cards</span>
+                            <span>Digital Assessment Platforms</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Online Examination</span>
+                            <span>Comprehensive Performance Analytics</span>
                         </li>
                     </ul>
                 </div>
@@ -557,20 +508,20 @@
                     <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-6">
                         <i class="fas fa-mobile-alt text-2xl text-orange-600"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Mobile Applications</h3>
-                    <p class="text-gray-600 mb-6">Dedicated mobile apps for parents, teachers, and students with real-time notifications and updates.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Mobile-First Engagement Platform</h3>
+                    <p class="text-gray-600 mb-6">Enhance stakeholder engagement with dedicated mobile applications for parents, teachers, and students featuring real-time notifications, interactive communication, and seamless access.</p>
                     <ul class="space-y-2">
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Parent Communication App</span>
+                            <span>Parent Communication Portal</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Teacher Productivity App</span>
+                            <span>Teacher Productivity Suite</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Student Learning App</span>
+                            <span>Student Learning Companion</span>
                         </li>
                     </ul>
                 </div>
@@ -580,20 +531,20 @@
                     <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
                         <i class="fas fa-bus text-2xl text-red-600"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Transport Management</h3>
-                    <p class="text-gray-600 mb-6">Complete transport management with GPS tracking, route optimization, and fee management.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Intelligent Transport Management System</h3>
+                    <p class="text-gray-600 mb-6">Optimize transportation logistics with GPS-enabled tracking, route optimization algorithms, real-time monitoring, and comprehensive safety management features.</p>
                     <ul class="space-y-2">
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>GPS Vehicle Tracking</span>
+                            <span>Live GPS Vehicle Tracking</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Route Optimization</span>
+                            <span>AI-Powered Route Optimization</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Attendance Tracking</span>
+                            <span>Automated Attendance Integration</span>
                         </li>
                     </ul>
                 </div>
@@ -603,20 +554,20 @@
                     <div class="w-16 h-16 bg-cyan-100 rounded-2xl flex items-center justify-center mb-6">
                         <i class="fas fa-chart-line text-2xl text-cyan-600"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Analytics & Reporting</h3>
-                    <p class="text-gray-600 mb-6">Comprehensive dashboards with real-time insights and customizable reports for data-driven decisions.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Advanced Analytics & Business Intelligence</h3>
+                    <p class="text-gray-600 mb-6">Drive data-informed decision-making with comprehensive dashboards, real-time insights, predictive analytics, and customizable reporting for institutional growth and optimization.</p>
                     <ul class="space-y-2">
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Real-time Dashboards</span>
+                            <span>Real-time Performance Dashboards</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Custom Reports</span>
+                            <span>Customizable Reporting Framework</span>
                         </li>
                         <li class="flex items-center gap-2 text-gray-700">
                             <i class="fas fa-check-circle text-green-500"></i>
-                            <span>Performance Analytics</span>
+                            <span>Predictive Analytics Engine</span>
                         </li>
                     </ul>
                 </div>
@@ -630,65 +581,65 @@
             <div class="text-center mb-16" data-aos="fade-up">
                 <div class="inline-flex items-center gap-2 bg-teal-100 text-teal-700 rounded-full px-6 py-2 mb-6">
                     <i class="fas fa-cogs"></i>
-                    <span class="text-sm font-semibold">INDUSTRY SOLUTIONS</span>
+                    <span class="text-sm font-semibold">SPECIALIZED SOLUTIONS</span>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
                     Tailored Solutions for Every Educational Institution
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Customized solutions designed to meet the unique needs of different types of educational institutions
+                    Customized technology solutions designed to address the unique operational challenges and requirements of diverse educational institutions across the spectrum.
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Solution 1 -->
-                <div class="industry-card rounded-xl p-6" data-aos="fade-up">
+                <div class="industry-card bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300" data-aos="fade-up">
                     <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
                         <i class="fas fa-school text-blue-600 text-xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">K-12 Schools</h3>
-                    <p class="text-gray-600 mb-4">Complete ERP solution for CBSE, ICSE, and State Board schools with all academic modules.</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center gap-2">
-                        <span>Learn More</span>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">K-12 Educational Institutions</h3>
+                    <p class="text-gray-600 mb-4">Comprehensive ERP solutions specifically designed for CBSE, ICSE, and State Board schools with complete academic and administrative modules.</p>
+                    <a href="#" class="text-blue-600 font-semibold flex items-center gap-2 hover:text-blue-700 transition-colors">
+                        <span>Explore Solutions</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Solution 2 -->
-                <div class="industry-card rounded-xl p-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="industry-card bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
                         <i class="fas fa-child text-green-600 text-xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">Pre-Schools & Daycare</h3>
-                    <p class="text-gray-600 mb-4">Specialized software for preschool management with parent engagement features.</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center gap-2">
-                        <span>Learn More</span>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Early Childhood Education Centers</h3>
+                    <p class="text-gray-600 mb-4">Specialized management software for preschools, daycare centers, and Montessori institutions with enhanced parent engagement features.</p>
+                    <a href="#" class="text-blue-600 font-semibold flex items-center gap-2 hover:text-blue-700 transition-colors">
+                        <span>Explore Solutions</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Solution 3 -->
-                <div class="industry-card rounded-xl p-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="industry-card bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
                         <i class="fas fa-globe text-purple-600 text-xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">International Schools</h3>
-                    <p class="text-gray-600 mb-4">Multi-currency, multi-language support for international curriculum schools.</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center gap-2">
-                        <span>Learn More</span>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">International Baccalaureate Schools</h3>
+                    <p class="text-gray-600 mb-4">Advanced multi-currency, multi-language solutions supporting IB, IGCSE, and Cambridge curriculum requirements with global compliance standards.</p>
+                    <a href="#" class="text-blue-600 font-semibold flex items-center gap-2 hover:text-blue-700 transition-colors">
+                        <span>Explore Solutions</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Solution 4 -->
-                <div class="industry-card rounded-xl p-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="industry-card bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
                     <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
                         <i class="fas fa-university text-orange-600 text-xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">Colleges & Universities</h3>
-                    <p class="text-gray-600 mb-4">Advanced features for higher education institutions with research management.</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center gap-2">
-                        <span>Learn More</span>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Higher Education Institutions</h3>
+                    <p class="text-gray-600 mb-4">Sophisticated management platforms for colleges and universities featuring research management, advanced analytics, and comprehensive academic tracking.</p>
+                    <a href="#" class="text-blue-600 font-semibold flex items-center gap-2 hover:text-blue-700 transition-colors">
+                        <span>Explore Solutions</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -702,19 +653,19 @@
             <div class="text-center mb-16" data-aos="fade-up">
                 <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-700 rounded-full px-6 py-2 mb-6">
                     <i class="fas fa-quote-left"></i>
-                    <span class="text-sm font-semibold">TESTIMONIALS</span>
+                    <span class="text-sm font-semibold">CLIENT TESTIMONIALS</span>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                    Trusted by Schools Across India
+                    Trusted by Educational Leaders Nationwide
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    See what school administrators, teachers, and parents are saying about School Club
+                    Discover how educational institutions across India are transforming their operations and enhancing learning outcomes with School Club's comprehensive solutions.
                 </p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Testimonial 1 -->
-                <div class="testimonial-card rounded-xl p-8 bg-white" data-aos="fade-up">
+                <div class="testimonial-card rounded-xl p-8 bg-white border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300" data-aos="fade-up">
                     <div class="flex items-center mb-6">
                         <div class="rating rating-sm">
                             <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
@@ -725,7 +676,7 @@
                         </div>
                     </div>
                     <p class="text-gray-600 mb-8 italic leading-relaxed">
-                        "School Club has transformed how we manage our institution. The fee management module alone saved us 20 hours per month. Implementation was seamless with excellent support."
+                        "School Club has revolutionized our institutional operations. The intelligent fee management module alone has saved us over 20 administrative hours monthly, while the seamless implementation process exceeded our expectations."
                     </p>
                     <div class="flex items-center gap-4">
                         <div class="avatar">
@@ -734,18 +685,18 @@
                             </div>
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-900">Rahul Sharma</h4>
+                            <h4 class="font-bold text-gray-900">Dr. Rahul Sharma</h4>
                             <p class="text-sm text-gray-600">Principal, Delhi Public School</p>
                             <div class="flex items-center gap-2 text-xs text-gray-500 mt-1">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <span>New Delhi</span>
+                                <span>New Delhi, NCR Region</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 2 -->
-                <div class="testimonial-card rounded-xl p-8 bg-white" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-card rounded-xl p-8 bg-white border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center mb-6">
                         <div class="rating rating-sm">
                             <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" checked />
@@ -756,7 +707,7 @@
                         </div>
                     </div>
                     <p class="text-gray-600 mb-8 italic leading-relaxed">
-                        "The parent communication features have improved our engagement rate by 40%. The mobile app is incredibly user-friendly and parents love the real-time updates."
+                        "The parent communication platform has dramatically enhanced our engagement metrics by 40%. The intuitive mobile application interface has received overwhelmingly positive feedback from our parent community."
                     </p>
                     <div class="flex items-center gap-4">
                         <div class="avatar">
@@ -765,18 +716,18 @@
                             </div>
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-900">Priya Gupta</h4>
-                            <p class="text-sm text-gray-600">Administrator, Heritage International School</p>
+                            <h4 class="font-bold text-gray-900">Ms. Priya Gupta</h4>
+                            <p class="text-sm text-gray-600">Administrative Director, Heritage International School</p>
                             <div class="flex items-center gap-2 text-xs text-gray-500 mt-1">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <span>Mumbai</span>
+                                <span>Mumbai, Maharashtra</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 3 -->
-                <div class="testimonial-card rounded-xl p-8 bg-white" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-card rounded-xl p-8 bg-white border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center mb-6">
                         <div class="rating rating-sm">
                             <input type="radio" name="rating-4" class="mask mask-star-2 bg-orange-400" checked />
@@ -787,7 +738,7 @@
                         </div>
                     </div>
                     <p class="text-gray-600 mb-8 italic leading-relaxed">
-                        "Excellent value for money! The comprehensive features and 24/7 support made our transition from manual to digital processes smooth and efficient."
+                        "Exceptional value proposition with comprehensive feature integration. The 24/7 dedicated support and seamless transition from legacy systems significantly enhanced our operational efficiency and stakeholder satisfaction."
                     </p>
                     <div class="flex items-center gap-4">
                         <div class="avatar">
@@ -796,11 +747,11 @@
                             </div>
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-900">Amit Kumar</h4>
-                            <p class="text-sm text-gray-600">Director, Wisdom Academy</p>
+                            <h4 class="font-bold text-gray-900">Mr. Amit Kumar</h4>
+                            <p class="text-sm text-gray-600">Director, Wisdom Academy Group</p>
                             <div class="flex items-center gap-2 text-xs text-gray-500 mt-1">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <span>Bangalore</span>
+                                <span>Bangalore, Karnataka</span>
                             </div>
                         </div>
                     </div>
@@ -810,460 +761,389 @@
     </section>
 
     <!-- Pricing Section -->
-<section id="pricing" class="py-16 lg:py-24 bg-gradient-to-b from-gray-50 to-white">
-    <div class="container mx-auto px-4">
-        <!-- Section Header -->
-        <div class="text-center mb-12 lg:mb-20" data-aos="fade-up">
-            <div class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 rounded-full px-5 py-2.5 mb-6 shadow-sm">
-                <i class="fas fa-tag text-sm"></i>
-                <span class="text-sm font-semibold tracking-wide">FLEXIBLE PRICING</span>
+    <section id="pricing" class="py-16 lg:py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center mb-12 lg:mb-20" data-aos="fade-up">
+                <div class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 rounded-full px-5 py-2.5 mb-6 shadow-sm">
+                    <i class="fas fa-tag text-sm"></i>
+                    <span class="text-sm font-semibold tracking-wide">TRANSPARENT PRICING</span>
+                </div>
+                <h2 class="text-3xl lg:text-5xl font-bold mb-4 text-gray-900">
+                    Simple, Scalable <span class="text-blue-600">Pricing Plans</span>
+                </h2>
+                <p class="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    Select the optimal plan for your institution's requirements. All packages include comprehensive feature access during the 30-day free trial period.
+                </p>
             </div>
-            <h2 class="text-3xl lg:text-5xl font-bold mb-4 text-gray-900">
-                Simple, Transparent <span class="text-blue-600">Pricing</span>
-            </h2>
-            <p class="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-                Choose the perfect plan for your institution. All plans include a 30-day free trial with full feature access.
-            </p>
-            
-            <!-- Billing Toggle -->
-            <div class="inline-flex bg-white rounded-xl p-1.5 border border-gray-200 shadow-sm mb-12">
-                <button class="px-6 py-3 rounded-lg font-semibold text-gray-600 hover:text-gray-900 transition-colors">
-                    Monthly Billing
-                </button>
-                <button class="px-6 py-3 rounded-lg font-semibold bg-blue-600 text-white shadow-sm">
-                    Annual Billing <span class="text-blue-200">(Save 20%)</span>
-                </button>
-            </div>
-        </div>
 
-        <!-- Pricing Cards -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
-            <!-- Basic Plan -->
-            <div class="relative group" data-aos="fade-up">
-                <!-- Card -->
-                <div class="bg-white rounded-2xl p-8 border-2 border-gray-200 shadow-lg hover:shadow-2xl hover:border-blue-300 transition-all duration-300 h-full flex flex-col">
-                    <!-- Plan Header -->
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold mb-4 text-gray-900">Basic</h3>
-                        <div class="mb-4">
-                            <div class="flex items-end justify-center">
-                                <span class="text-5xl font-bold text-gray-900">₹2</span>
-                                <span class="text-lg text-gray-600 ml-2 mb-2">/student/month</span>
+            <!-- Pricing Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
+                <!-- Basic Plan -->
+                <div class="relative group" data-aos="fade-up">
+                    <!-- Card -->
+                    <div class="bg-white rounded-2xl p-8 border-2 border-gray-200 shadow-lg hover:shadow-2xl hover:border-blue-300 transition-all duration-300 h-full flex flex-col">
+                        <!-- Plan Header -->
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900">Essentials Plan</h3>
+                            <div class="mb-4">
+                                <div class="flex items-end justify-center">
+                                    <span class="text-5xl font-bold text-gray-900">₹2</span>
+                                    <span class="text-lg text-gray-600 ml-2 mb-2">/student/month</span>
+                                </div>
+                                <div class="text-sm text-gray-500 mt-2">Annual billing • ₹24/student/year</div>
                             </div>
-                            <div class="text-sm text-gray-500 mt-2">Billed annually • ₹24/student/year</div>
-                        </div>
-                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-lg">
-                            <i class="fas fa-user-graduate text-blue-600"></i>
-                            <span class="text-sm font-semibold text-blue-700">Up to 500 students</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Features -->
-                    <div class="flex-1 mb-8">
-                        <h4 class="font-semibold text-gray-700 mb-4 text-lg">What's included:</h4>
-                        <ul class="space-y-4">
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">Core Admin & Student Management</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">Basic Fee & Attendance Tracking</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">Web Portal Access</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-times text-gray-400 text-xs"></i>
-                                </div>
-                                <span class="text-gray-400">Mobile Applications</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-times text-gray-400 text-xs"></i>
-                                </div>
-                                <span class="text-gray-400">Advanced Analytics</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-times text-gray-400 text-xs"></i>
-                                </div>
-                                <span class="text-gray-400">Priority Support</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- CTA Button -->
-                    <button class="btn btn-outline border-2 border-gray-300 text-gray-800 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 w-full py-4 font-semibold rounded-xl transition-all duration-300 group-hover:border-blue-600 group-hover:text-blue-600">
-                        Start Free Trial
-                    </button>
-                </div>
-                
-                <!-- Most Popular Badge -->
-                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <div class="bg-gray-100 text-gray-600 text-xs font-semibold px-4 py-1.5 rounded-full">
-                        Perfect for Small Schools
-                    </div>
-                </div>
-            </div>
-
-            <!-- Professional Plan - Featured -->
-            <div class="relative group lg:scale-105 lg:-translate-y-4" data-aos="fade-up" data-aos-delay="100">
-                <!-- Popular Badge -->
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                    <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-bold px-6 py-2 rounded-full shadow-lg flex items-center gap-2">
-                        <i class="fas fa-crown"></i>
-                        <span>MOST POPULAR</span>
-                    </div>
-                </div>
-                
-                <!-- Card -->
-                <div class="bg-gradient-to-b from-blue-50 to-white rounded-2xl p-8 border-2 border-blue-200 shadow-2xl hover:shadow-3xl hover:border-blue-400 transition-all duration-300 h-full flex flex-col relative overflow-hidden">
-                    <!-- Background Pattern -->
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-full -mr-16 -mt-16"></div>
-                    
-                    <!-- Plan Header -->
-                    <div class="text-center mb-8 relative z-10">
-                        <h3 class="text-2xl font-bold mb-4 text-gray-900">Professional</h3>
-                        <div class="mb-4">
-                            <div class="flex items-end justify-center">
-                                <span class="text-5xl font-bold text-gray-900">₹3</span>
-                                <span class="text-lg text-gray-600 ml-2 mb-2">/student/month</span>
-                            </div>
-                            <div class="text-sm text-gray-500 mt-2">Billed annually • ₹36/student/year</div>
-                        </div>
-                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 rounded-lg">
-                            <i class="fas fa-school text-blue-600"></i>
-                            <span class="text-sm font-semibold text-blue-700">Up to 2000 students</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Features -->
-                    <div class="flex-1 mb-8 relative z-10">
-                        <h4 class="font-semibold text-gray-700 mb-4 text-lg">What's included:</h4>
-                        <ul class="space-y-4">
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">All Admin Modules (50+)</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">Complete Academic Suite</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">Advanced Fee & Transport</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">Parent & Teacher Mobile Apps</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">Basic Analytics Dashboard</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-times text-gray-400 text-xs"></i>
-                                </div>
-                                <span class="text-gray-400">Priority Support</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- CTA Button -->
-                    <button class="btn bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white w-full py-4 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative z-10">
-                        <i class="fas fa-play-circle mr-2"></i>
-                        Start Free Trial
-                    </button>
-                </div>
-            </div>
-
-            <!-- Enterprise Plan -->
-            <div class="relative group" data-aos="fade-up" data-aos-delay="200">
-                <!-- Card -->
-                <div class="bg-white rounded-2xl p-8 border-2 border-gray-200 shadow-lg hover:shadow-2xl hover:border-purple-300 transition-all duration-300 h-full flex flex-col">
-                    <!-- Plan Header -->
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold mb-4 text-gray-900">Enterprise</h3>
-                        <div class="mb-4">
-                            <div class="flex items-end justify-center">
-                                <span class="text-5xl font-bold text-gray-900">₹5</span>
-                                <span class="text-lg text-gray-600 ml-2 mb-2">/student/month</span>
-                            </div>
-                            <div class="text-sm text-gray-500 mt-2">Billed annually • ₹60/student/year</div>
-                        </div>
-                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-purple-50 rounded-lg">
-                            <i class="fas fa-building text-purple-600"></i>
-                            <span class="text-sm font-semibold text-purple-700">Unlimited students</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Features -->
-                    <div class="flex-1 mb-8">
-                        <h4 class="font-semibold text-gray-700 mb-4 text-lg">What's included:</h4>
-                        <ul class="space-y-4">
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">All Professional Features</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">Custom Development & APIs</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">Dedicated Account Manager</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">Advanced Analytics & BI Tools</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">24/7 Priority Support</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <i class="fas fa-check text-green-600 text-xs"></i>
-                                </div>
-                                <span class="text-gray-700">White-label Solutions</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- CTA Button -->
-                    <button class="btn bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white w-full py-4 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                        <i class="fas fa-headset mr-2"></i>
-                        Contact Sales
-                    </button>
-                </div>
-                
-                <!-- Most Popular Badge -->
-                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <div class="bg-purple-100 text-purple-600 text-xs font-semibold px-4 py-1.5 rounded-full">
-                        For Large Institutions
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Additional Info -->
-        <div class="mt-16 lg:mt-20 text-center" data-aos="fade-up" data-aos-delay="300">
-            <div class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8 lg:p-10 border border-gray-200 shadow-sm">
-                <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
-                    <div class="flex flex-col items-center">
-                        <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
-                            <i class="fas fa-sync-alt text-blue-600 text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">Easy Migration</h4>
-                        <p class="text-gray-600 text-sm">Free data migration from your existing system</p>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
-                            <i class="fas fa-shield-alt text-green-600 text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">No Hidden Costs</h4>
-                        <p class="text-gray-600 text-sm">All features included in the quoted price</p>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
-                            <i class="fas fa-handshake text-purple-600 text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">Flexible Contract</h4>
-                        <p class="text-gray-600 text-sm">Cancel anytime with 30-day notice</p>
-                    </div>
-                </div>
-                
-                <!-- Contact CTA -->
-                <div class="mt-10 pt-8 border-t border-gray-200">
-                    <p class="text-gray-600 mb-4">Need a custom plan for your institution?</p>
-                    <a href="#contact" class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors">
-                        <i class="fas fa-phone-alt"></i>
-                        <span>Talk to our sales team: +91 1800 123 4567</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-   <!-- Contact Section -->
-<section id="contact" class="relative py-20 lg:py-32 overflow-hidden">
-    <!-- Background with Gradient & Pattern -->
-    <div class="absolute inset-0 z-0">
-        <!-- Main Gradient -->
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-indigo-900 to-blue-800"></div>
-        
-        <!-- Pattern Overlay -->
-        <div class="absolute inset-0 opacity-10"
-             style="background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z"%3E%3C/path%3E%3C/svg%3E');">
-        </div>
-        
-        <!-- Animated Elements -->
-        <div class="absolute top-1/4 left-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
-    </div>
-
-    <div class="container mx-auto px-4 relative z-10">
-        <!-- Section Header -->
-        <div class="text-center mb-16 lg:mb-20" data-aos="fade-up">
-            <div class="inline-flex items-center gap-3 bg-white/15 backdrop-blur-sm text-white rounded-full px-6 py-3 mb-6 border border-white/20">
-                <i class="fas fa-calendar-check text-cyan-300"></i>
-                <span class="text-sm font-semibold tracking-wide">GET STARTED TODAY</span>
-            </div>
-            
-            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-                Ready to Transform Your <span class="text-cyan-300">School?</span>
-            </h2>
-            <p class="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-                Schedule a personalized demo with our education technology experts and discover how School Club can revolutionize your institution's operations.
-            </p>
-        </div>
-
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <!-- Left Column - Contact Info & Features -->
-            <div class="space-y-8" data-aos="fade-right">
-                <!-- Contact Info Cards -->
-                <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Phone Card -->
-                    <div class="group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-300"></div>
-                        <div class="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:border-cyan-400/50 transition-all duration-300">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
-                                    <i class="fas fa-phone-alt text-white text-xl"></i>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-cyan-200 font-medium">Call Us Today</div>
-                                    <div class="text-2xl font-bold text-white">1800-123-4567</div>
-                                </div>
-                            </div>
-                            <p class="text-blue-100 text-sm">Our education consultants are available 24/7 to discuss your school's specific needs.</p>
-                        </div>
-                    </div>
-
-                    <!-- Email Card -->
-                    <div class="group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-300"></div>
-                        <div class="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:border-blue-400/50 transition-all duration-300">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg">
-                                    <i class="fas fa-envelope-open-text text-white text-xl"></i>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-cyan-200 font-medium">Email Us</div>
-                                    <div class="text-2xl font-bold text-white">sales@schoolclub.in</div>
-                                </div>
-                            </div>
-                            <p class="text-blue-100 text-sm">Get a detailed proposal tailored to your school's requirements within 24 hours.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Features List -->
-                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-                    <h3 class="text-2xl font-bold text-white mb-6">Why Choose School Club?</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-rocket text-cyan-300 text-lg"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-white mb-2">Fast Implementation</h4>
-                                <p class="text-blue-100 text-sm">Get your school up and running in less than 48 hours with our dedicated implementation team.</p>
+                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-lg">
+                                <i class="fas fa-user-graduate text-blue-600"></i>
+                                <span class="text-sm font-semibold text-blue-700">Up to 500 students</span>
                             </div>
                         </div>
                         
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-graduation-cap text-green-300 text-lg"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-white mb-2">Free Training</h4>
-                                <p class="text-blue-100 text-sm">Comprehensive training for all staff members to ensure smooth adoption.</p>
-                            </div>
+                        <!-- Features -->
+                        <div class="flex-1 mb-8">
+                            <h4 class="font-semibold text-gray-700 mb-4 text-lg">Core Features Included:</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Fundamental Student Management</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Basic Attendance & Fee Tracking</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Web Administration Portal</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-times text-gray-400 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-400">Dedicated Mobile Applications</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-times text-gray-400 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-400">Advanced Analytics Dashboard</span>
+                                </li>
+                            </ul>
                         </div>
                         
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-headset text-purple-300 text-lg"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-white mb-2">Dedicated Support</h4>
-                                <p class="text-blue-100 text-sm">Get a dedicated account manager and 24/7 priority support for your institution.</p>
-                            </div>
+                        <!-- CTA Button -->
+                        <button class="btn btn-outline border-2 border-gray-300 text-gray-800 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 w-full py-4 font-semibold rounded-xl transition-all duration-300">
+                            Begin Free Trial
+                        </button>
+                    </div>
+                    
+                    <!-- Plan Badge -->
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <div class="bg-gray-100 text-gray-600 text-xs font-semibold px-4 py-1.5 rounded-full">
+                            Ideal for Emerging Institutions
                         </div>
                     </div>
                 </div>
 
-                <!-- Trust Indicators -->
-                <div class="flex items-center justify-around bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-white">30-Day</div>
-                        <div class="text-sm text-cyan-200">Free Trial</div>
+                <!-- Professional Plan - Featured -->
+                <div class="relative group lg:scale-105 lg:-translate-y-4" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Popular Badge -->
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                        <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-bold px-6 py-2 rounded-full shadow-lg flex items-center gap-2">
+                            <i class="fas fa-crown"></i>
+                            <span>MOST POPULAR</span>
+                        </div>
                     </div>
-                    <div class="h-12 w-px bg-white/20"></div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-white">No Setup</div>
-                        <div class="text-sm text-cyan-200">Cost</div>
+                    
+                    <!-- Card -->
+                    <div class="bg-gradient-to-b from-blue-50 to-white rounded-2xl p-8 border-2 border-blue-200 shadow-2xl hover:shadow-3xl hover:border-blue-400 transition-all duration-300 h-full flex flex-col relative overflow-hidden">
+                        <!-- Plan Header -->
+                        <div class="text-center mb-8 relative z-10">
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900">Professional Suite</h3>
+                            <div class="mb-4">
+                                <div class="flex items-end justify-center">
+                                    <span class="text-5xl font-bold text-gray-900">₹3</span>
+                                    <span class="text-lg text-gray-600 ml-2 mb-2">/student/month</span>
+                                </div>
+                                <div class="text-sm text-gray-500 mt-2">Annual billing • ₹36/student/year</div>
+                            </div>
+                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 rounded-lg">
+                                <i class="fas fa-school text-blue-600"></i>
+                                <span class="text-sm font-semibold text-blue-700">Up to 2000 students</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Features -->
+                        <div class="flex-1 mb-8 relative z-10">
+                            <h4 class="font-semibold text-gray-700 mb-4 text-lg">Comprehensive Features:</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Complete Academic Management Suite</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Advanced Financial Management</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Parent & Teacher Mobile Applications</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Transport & Inventory Management</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Intermediate Analytics Platform</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- CTA Button -->
+                        <button class="btn bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white w-full py-4 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative z-10">
+                            <i class="fas fa-play-circle mr-2"></i>
+                            Start Free Trial
+                        </button>
                     </div>
-                    <div class="h-12 w-px bg-white/20"></div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-white">Free</div>
-                        <div class="text-sm text-cyan-200">Data Migration</div>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="relative group" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Card -->
+                    <div class="bg-white rounded-2xl p-8 border-2 border-gray-200 shadow-lg hover:shadow-2xl hover:border-purple-300 transition-all duration-300 h-full flex flex-col">
+                        <!-- Plan Header -->
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900">Enterprise Solution</h3>
+                            <div class="mb-4">
+                                <div class="flex items-end justify-center">
+                                    <span class="text-5xl font-bold text-gray-900">₹5</span>
+                                    <span class="text-lg text-gray-600 ml-2 mb-2">/student/month</span>
+                                </div>
+                                <div class="text-sm text-gray-500 mt-2">Annual billing • ₹60/student/year</div>
+                            </div>
+                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-purple-50 rounded-lg">
+                                <i class="fas fa-building text-purple-600"></i>
+                                <span class="text-sm font-semibold text-purple-700">Unlimited student capacity</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Features -->
+                        <div class="flex-1 mb-8">
+                            <h4 class="font-semibold text-gray-700 mb-4 text-lg">Enterprise-Grade Features:</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Complete Professional Suite Features</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Custom Development & API Integration</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Dedicated Account Management</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">Advanced Business Intelligence Tools</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <span class="text-gray-700">24/7 Priority Technical Support</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- CTA Button -->
+                        <button class="btn bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white w-full py-4 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                            <i class="fas fa-headset mr-2"></i>
+                            Schedule Enterprise Consultation
+                        </button>
+                    </div>
+                    
+                    <!-- Plan Badge -->
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <div class="bg-purple-100 text-purple-600 text-xs font-semibold px-4 py-1.5 rounded-full">
+                            For Large Educational Groups
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column - Contact Form -->
-            <div data-aos="fade-left" data-aos-delay="200">
-                <!-- Form Container with Floating Effect -->
-                <div class="relative group">
-                    <!-- Glow Effect -->
-                    <div class="absolute -inset-1 bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 rounded-3xl blur opacity-30 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+            <!-- Additional Info -->
+            <div class="mt-16 lg:mt-20 text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8 lg:p-10 border border-gray-200 shadow-sm">
+                    <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+                        <div class="flex flex-col items-center">
+                            <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
+                                <i class="fas fa-sync-alt text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900 mb-2">Seamless Data Migration</h4>
+                            <p class="text-gray-600 text-sm">Complimentary data migration from existing systems</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
+                                <i class="fas fa-shield-alt text-green-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900 mb-2">Transparent Pricing</h4>
+                            <p class="text-gray-600 text-sm">Comprehensive features included in quoted pricing</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
+                                <i class="fas fa-handshake text-purple-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900 mb-2">Flexible Contract Terms</h4>
+                            <p class="text-gray-600 text-sm">Cancel anytime with 30-day notice period</p>
+                        </div>
+                    </div>
                     
+                    <!-- Contact CTA -->
+                    <div class="mt-10 pt-8 border-t border-gray-200">
+                        <p class="text-gray-600 mb-4">Require a customized solution for your educational institution?</p>
+                        <a href="#contact" class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Contact our solutions team: +91 1800 123 4567</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative py-10 lg:py-10 overflow-hidden ">
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16 lg:mb-20" data-aos="fade-up">
+                <div class="inline-flex items-center gap-3 bg-white/15 backdrop-blur-sm  rounded-full px-6 py-3 mb-6 border border-white/20">
+                    <i class="fas fa-calendar-check text-cyan-300"></i>
+                    <span class="text-sm font-semibold tracking-wide">SCHEDULE YOUR DEMONSTRATION</span>
+                </div>
+                
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 ">
+                    Elevate Your Institution's <span class="text-cyan-300">Digital Transformation</span>
+                </h2>
+                <p class="text-xl text-blue-800 max-w-3xl mx-auto leading-relaxed">
+                    Schedule a personalized consultation with our education technology specialists to explore how School Club can revolutionize your institution's operational efficiency and academic excellence.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Left Column - Contact Info & Features -->
+                <div class="space-y-8" data-aos="fade-right">
+                    <!-- Contact Info Cards -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Phone Card -->
+                        <div class="group relative overflow-hidden">
+                            <div class="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:border-cyan-400/50 transition-all duration-300">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
+                                        <i class="fas fa-phone-alt text-white text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-cyan-800 font-medium">Direct Contact Line</div>
+                                        <div class="text-2xl font-bold ">1800-123-4567</div>
+                                    </div>
+                                </div>
+                                <p class="text-blue-100 text-sm">Our dedicated education consultants are available to discuss your institution's specific requirements and challenges.</p>
+                            </div>
+                        </div>
+
+                        <!-- Email Card -->
+                        <div class="group relative overflow-hidden">
+                            <div class="relative bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:border-blue-400/50 transition-all duration-300">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg">
+                                        <i class="fas fa-envelope-open-text text-white text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-cyan-800 font-medium">Professional Correspondence</div>
+                                        <div class="text-2xl font-bold ">info@schoolclub.in</div>
+                                    </div>
+                                </div>
+                                <p class="text-blue-100 text-sm">Receive a detailed institutional proposal tailored to your specific requirements within 24 business hours.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features List -->
+                    <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                        <h3 class="text-2xl font-bold text-cyan-800 mb-6">Strategic Implementation Advantages</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-rocket text-cyan-300 text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-cyan-800 mb-2">Rapid Deployment Methodology</h4>
+                                    <p class="text-blue-800 text-sm">Accelerated implementation timeline with full operational capability achieved within 48 hours.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-graduation-cap text-green-300 text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-cyan-800 mb-2">Comprehensive Training Programs</h4>
+                                    <p class="text-blue-800 text-sm">Extensive training modules for all stakeholder groups ensuring optimal system utilization.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-headset text-purple-300 text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-cyan-800 mb-2">Dedicated Support Infrastructure</h4>
+                                    <p class="text-blue-800 text-sm">Assigned account management with 24/7 priority technical support for uninterrupted operations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Contact Form -->
+                <div data-aos="fade-left" data-aos-delay="200">
                     <!-- Main Form Card -->
                     <div class="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
                         <!-- Form Header -->
                         <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8">
                             <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-2xl font-bold">Schedule Your Free Demo</h3>
+                                <h3 class="text-2xl font-bold">Schedule Institutional Demonstration</h3>
                                 <div class="flex gap-1">
                                     <div class="w-3 h-3 bg-green-400 rounded-full"></div>
                                     <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
                                     <div class="w-3 h-3 bg-red-400 rounded-full"></div>
                                 </div>
                             </div>
-                            <p class="text-blue-100">Complete the form below and our team will contact you within 2 hours to schedule your personalized demo.</p>
+                            <p class="text-blue-100">Complete the following form to schedule a comprehensive demonstration of our platform's capabilities.</p>
                         </div>
                         
                         <!-- Form Content -->
@@ -1272,14 +1152,14 @@
                                 <!-- School Info -->
                                 <div class="form-control">
                                     <label class="label">
-                                        <span class="label-text font-semibold text-gray-700">School Name *</span>
+                                        <span class="label-text font-semibold text-gray-700">Institution Name *</span>
                                     </label>
                                     <div class="relative">
                                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                             <i class="fas fa-school text-gray-400"></i>
                                         </div>
                                         <input type="text" 
-                                               placeholder="Enter your school name" 
+                                               placeholder="Enter your institution's official name" 
                                                class="pl-12 input input-bordered w-full bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                                                required />
                                     </div>
@@ -1289,14 +1169,14 @@
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div class="form-control">
                                         <label class="label">
-                                            <span class="label-text font-semibold text-gray-700">Your Name *</span>
+                                            <span class="label-text font-semibold text-gray-700">Contact Person *</span>
                                         </label>
                                         <div class="relative">
                                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                                 <i class="fas fa-user text-gray-400"></i>
                                             </div>
                                             <input type="text" 
-                                                   placeholder="Full name" 
+                                                   placeholder="Full name of primary contact" 
                                                    class="pl-12 input input-bordered w-full bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                                                    required />
                                         </div>
@@ -1304,14 +1184,14 @@
                                     
                                     <div class="form-control">
                                         <label class="label">
-                                            <span class="label-text font-semibold text-gray-700">Email Address *</span>
+                                            <span class="label-text font-semibold text-gray-700">Professional Email *</span>
                                         </label>
                                         <div class="relative">
                                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                                 <i class="fas fa-envelope text-gray-400"></i>
                                             </div>
                                             <input type="email" 
-                                                   placeholder="your@email.com" 
+                                                   placeholder="professional@institution.edu.in" 
                                                    class="pl-12 input input-bordered w-full bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                                                    required />
                                         </div>
@@ -1322,7 +1202,7 @@
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div class="form-control">
                                         <label class="label">
-                                            <span class="label-text font-semibold text-gray-700">Phone Number *</span>
+                                            <span class="label-text font-semibold text-gray-700">Contact Number *</span>
                                         </label>
                                         <div class="relative">
                                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -1337,18 +1217,18 @@
                                     
                                     <div class="form-control">
                                         <label class="label">
-                                            <span class="label-text font-semibold text-gray-700">Number of Students *</span>
+                                            <span class="label-text font-semibold text-gray-700">Student Enrollment *</span>
                                         </label>
                                         <div class="relative">
                                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                                 <i class="fas fa-users text-gray-400"></i>
                                             </div>
                                             <select class="pl-12 select select-bordered w-full bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
-                                                <option disabled selected>Select student count</option>
-                                                <option>Less than 500 students</option>
+                                                <option disabled selected>Select enrollment range</option>
+                                                <option>Under 500 students</option>
                                                 <option>500 - 2,000 students</option>
                                                 <option>2,000 - 5,000 students</option>
-                                                <option>More than 5,000 students</option>
+                                                <option>Above 5,000 students</option>
                                             </select>
                                         </div>
                                     </div>
@@ -1357,7 +1237,7 @@
                                 <!-- Your Role -->
                                 <div class="form-control">
                                     <label class="label">
-                                        <span class="label-text font-semibold text-gray-700">Your Role *</span>
+                                        <span class="label-text font-semibold text-gray-700">Primary Role *</span>
                                     </label>
                                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                                         <label class="flex items-center p-3 border border-gray-200 rounded-xl cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all">
@@ -1366,11 +1246,11 @@
                                         </label>
                                         <label class="flex items-center p-3 border border-gray-200 rounded-xl cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all">
                                             <input type="radio" name="role" class="radio radio-primary" />
-                                            <span class="ml-3 font-medium text-gray-700">Admin</span>
+                                            <span class="ml-3 font-medium text-gray-700">Administrator</span>
                                         </label>
                                         <label class="flex items-center p-3 border border-gray-200 rounded-xl cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all">
                                             <input type="radio" name="role" class="radio radio-primary" />
-                                            <span class="ml-3 font-medium text-gray-700">Teacher</span>
+                                            <span class="ml-3 font-medium text-gray-700">IT Manager</span>
                                         </label>
                                         <label class="flex items-center p-3 border border-gray-200 rounded-xl cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all">
                                             <input type="radio" name="role" class="radio radio-primary" />
@@ -1382,14 +1262,14 @@
                                 <!-- Message -->
                                 <div class="form-control">
                                     <label class="label">
-                                        <span class="label-text font-semibold text-gray-700">Additional Requirements</span>
+                                        <span class="label-text font-semibold text-gray-700">Specific Requirements</span>
                                     </label>
                                     <div class="relative">
                                         <div class="absolute top-4 left-4 pointer-events-none">
                                             <i class="fas fa-comment-alt text-gray-400"></i>
                                         </div>
                                         <textarea class="pl-12 textarea textarea-bordered w-full h-32 bg-gray-50 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
-                                                  placeholder="Tell us about your specific needs, current systems, or any questions you have..."></textarea>
+                                                  placeholder="Detail your institution's specific requirements, current technological infrastructure, or particular challenges..."></textarea>
                                     </div>
                                 </div>
                                 
@@ -1397,17 +1277,16 @@
                                 <div class="pt-4">
                                     <button type="submit" 
                                             class="group relative w-full overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl blur-sm group-hover:blur transition-all duration-300"></div>
                                         <div class="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-bold py-4 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group-hover:gap-4">
                                             <i class="fas fa-calendar-check text-xl"></i>
-                                            Schedule Free Demo
+                                            Schedule Institutional Demonstration
                                             <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
                                         </div>
                                     </button>
                                     
                                     <p class="text-center text-gray-500 text-sm mt-4">
                                         <i class="fas fa-lock mr-2 text-green-500"></i>
-                                        Your information is secure. We never share your data.
+                                        Your institutional information is protected by enterprise-grade security protocols.
                                     </p>
                                 </div>
                             </form>
@@ -1416,338 +1295,292 @@
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Additional Info -->
-        <div class="mt-16 lg:mt-20 text-center" data-aos="fade-up">
-            <div class="inline-flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl px-8 py-6 border border-white/20">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center">
-                        <i class="fas fa-clock text-green-300"></i>
-                    </div>
-                    <div class="text-left">
-                        <div class="text-white font-semibold">Quick Response</div>
-                        <div class="text-sm text-blue-200">We respond within 2 hours</div>
-                    </div>
-                </div>
-                <div class="h-12 w-px bg-white/20 hidden sm:block"></div>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-purple-500/20 rounded-xl flex items-center justify-center">
-                        <i class="fas fa-video text-purple-300"></i>
-                    </div>
-                    <div class="text-left">
-                        <div class="text-white font-semibold">Live Demo</div>
-                        <div class="text-sm text-blue-200">Personalized walkthrough</div>
-                    </div>
-                </div>
-                <div class="h-12 w-px bg-white/20 hidden sm:block"></div>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-cyan-500/20 rounded-xl flex items-center justify-center">
-                        <i class="fas fa-chart-line text-cyan-300"></i>
-                    </div>
-                    <div class="text-left">
-                        <div class="text-white font-semibold">ROI Analysis</div>
-                        <div class="text-sm text-blue-200">See potential savings</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Floating Elements -->
-    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white/5 to-transparent"></div>
-</section>
-
-  <!-- Footer -->
-<footer class="bg-gradient-to-b from-gray-900 to-gray-950 text-white">
-    <!-- Top Gradient Bar -->
-    <div class="h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600"></div>
-    
-    <!-- Newsletter Section -->
-    <div class="border-b border-gray-800">
-        <div class="container mx-auto px-4 py-12">
-            <div class="grid lg:grid-cols-2 gap-8 items-center">
-                <div>
-                    <h3 class="text-2xl font-bold mb-3">Stay Updated with Education Trends</h3>
-                    <p class="text-gray-400">Subscribe to our newsletter for the latest updates, tips, and resources for educational institutions.</p>
-                </div>
-                <div>
-                    <form class="flex flex-col sm:flex-row gap-3">
-                        <input 
-                            type="email" 
-                            placeholder="Enter your email address" 
-                            class="flex-1 px-6 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        >
-                        <button class="btn bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300">
-                            Subscribe
-                        </button>
-                    </form>
-                    <p class="text-xs text-gray-500 mt-3">By subscribing, you agree to our Privacy Policy. Unsubscribe anytime.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Footer Content -->
-    <div class="container mx-auto px-4 pt-16 pb-8">
-        <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
-            <!-- Company Info -->
-            <div class="lg:col-span-2">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                        <i class="fas fa-school text-2xl text-white"></i>
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-gray-900 to-gray-950 text-white">
+        <!-- Top Gradient Bar -->
+        <div class="h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600"></div>
+        
+        <!-- Newsletter Section -->
+        <div class="border-b border-gray-800">
+            <div class="container mx-auto px-4 py-12">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3">Stay Informed with Educational Innovation</h3>
+                        <p class="text-gray-400">Subscribe to our institutional newsletter for the latest educational technology insights, operational best practices, and innovative resources.</p>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold">School Club</h3>
-                        <p class="text-sm text-blue-400 font-semibold">School ERP Software</p>
+                        <form class="flex flex-col sm:flex-row gap-3">
+                            <input 
+                                type="email" 
+                                placeholder="Enter institutional email address" 
+                                class="flex-1 px-6 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
+                            <button class="btn bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300">
+                                Institutional Subscription
+                            </button>
+                        </form>
+                        <p class="text-xs text-gray-500 mt-3">By subscribing, you acknowledge our Privacy Policy. Unsubscribe at any time.</p>
                     </div>
                 </div>
-                <p class="text-gray-400 mb-6 leading-relaxed">
-                    India's most trusted school management platform. Empowering 3,500+ educational institutions with cutting-edge technology since 2010.
-                </p>
-                
-                <!-- Certifications -->
-                <div class="flex flex-wrap gap-3 mb-8">
-                    <div class="bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-2 flex items-center gap-2">
-                        <i class="fas fa-shield-alt text-green-400"></i>
-                        <span class="text-sm">ISO 27001 Certified</span>
+            </div>
+        </div>
+
+        <!-- Main Footer Content -->
+        <div class="container mx-auto px-4 pt-16 pb-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <!-- Company Info -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-school text-2xl text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">School Club ERP</h3>
+                            <p class="text-sm text-blue-400 font-semibold">Intelligent Educational Management Platform</p>
+                        </div>
                     </div>
-                    <div class="bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-2 flex items-center gap-2">
-                        <i class="fas fa-lock text-blue-400"></i>
-                        <span class="text-sm">GDPR Compliant</span>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        India's premier educational management platform. Empowering over 3,500 institutions with innovative technology solutions since 2010, driving academic excellence and operational efficiency.
+                    </p>
+                    
+                    <!-- Social Links -->
+                    <div class="flex gap-3">
+                        <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1">
+                            <i class="fab fa-linkedin-in text-gray-300 group-hover:text-white"></i>
+                        </a>
+                        <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-blue-400 transition-all duration-300 hover:-translate-y-1">
+                            <i class="fab fa-twitter text-gray-300 group-hover:text-white"></i>
+                        </a>
+                        <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-blue-700 transition-all duration-300 hover:-translate-y-1">
+                            <i class="fab fa-facebook-f text-gray-300 group-hover:text-white"></i>
+                        </a>
+                        <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-red-600 transition-all duration-300 hover:-translate-y-1">
+                            <i class="fab fa-youtube text-gray-300 group-hover:text-white"></i>
+                        </a>
                     </div>
                 </div>
-                
-                <!-- Social Links -->
-                <div class="flex gap-3">
-                    <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1">
-                        <i class="fab fa-linkedin-in text-gray-300 group-hover:text-white"></i>
-                    </a>
-                    <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-blue-400 transition-all duration-300 hover:-translate-y-1">
-                        <i class="fab fa-twitter text-gray-300 group-hover:text-white"></i>
-                    </a>
-                    <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-blue-700 transition-all duration-300 hover:-translate-y-1">
-                        <i class="fab fa-facebook-f text-gray-300 group-hover:text-white"></i>
-                    </a>
-                    <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-red-600 transition-all duration-300 hover:-translate-y-1">
-                        <i class="fab fa-youtube text-gray-300 group-hover:text-white"></i>
-                    </a>
-                    <a href="#" class="group w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-purple-600 transition-all duration-300 hover:-translate-y-1">
-                        <i class="fab fa-instagram text-gray-300 group-hover:text-white"></i>
-                    </a>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 flex items-center gap-2">
+                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        Navigation
+                    </h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#home" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#features" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Platform Features
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#solutions" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Institutional Solutions
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pricing" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Pricing Structure
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 flex items-center gap-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        Resources
+                    </h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fas fa-newspaper text-sm text-green-400"></i>
+                                Industry Insights
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fas fa-chart-line text-sm text-green-400"></i>
+                                Success Stories
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fas fa-question-circle text-sm text-green-400"></i>
+                                Support Center
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fas fa-code text-sm text-green-400"></i>
+                                API Documentation
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 flex items-center gap-2">
+                        <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                        Institutional Contact
+                    </h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3 p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
+                            <div class="w-10 h-10 bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone text-blue-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Institutional Support</p>
+                                <p class="font-semibold">+91 1800-123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
+                            <div class="w-10 h-10 bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-envelope text-blue-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Professional Correspondence</p>
+                                <p class="font-semibold">institutional@schoolclub.in</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Quick Links -->
-            <div>
-                <h4 class="text-lg font-bold mb-6 flex items-center gap-2">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    Quick Links
-                </h4>
-                <ul class="space-y-3">
-                    <li>
-                        <a href="#home" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#features" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                            Features
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#solutions" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                            Solutions
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#pricing" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                            Pricing
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#testimonials" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                            <i class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                            Testimonials
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Resources -->
-            <div>
-                <h4 class="text-lg font-bold mb-6 flex items-center gap-2">
-                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                    Resources
-                </h4>
-                <ul class="space-y-3">
-                    <li>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                            <i class="fas fa-newspaper text-sm text-green-400"></i>
-                            Blog & Articles
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                            <i class="fas fa-chart-line text-sm text-green-400"></i>
-                            Case Studies
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                            <i class="fas fa-question-circle text-sm text-green-400"></i>
-                            Help Center
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                            <i class="fas fa-book text-sm text-green-400"></i>
-                            Documentation
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                            <i class="fas fa-code text-sm text-green-400"></i>
-                            API Documentation
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Contact -->
-            <div>
-                <h4 class="text-lg font-bold mb-6 flex items-center gap-2">
-                    <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    Contact Us
-                </h4>
-                <div class="space-y-4">
-                    <div class="flex items-start gap-3 p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
-                        <div class="w-10 h-10 bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-phone text-blue-400"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-400">Sales & Support</p>
-                            <p class="font-semibold">+91 1800-123-4567</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3 p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
-                        <div class="w-10 h-10 bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-envelope text-blue-400"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-400">Email</p>
-                            <p class="font-semibold">contact@schoolclub.in</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3 p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
-                        <div class="w-10 h-10 bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-map-marker-alt text-blue-400"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-400">Head Office</p>
-                            <p class="font-semibold">Noida, Uttar Pradesh 201301</p>
-                        </div>
+            <!-- Divider -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <!-- Copyright -->
+                    <div class="text-center md:text-left">
+                        <p class="text-gray-400 text-sm">
+                            © 2024 <span class="text-blue-400 font-semibold">School Club Educational Solutions</span>. All rights reserved.
+                        </p>
+                        <p class="text-gray-500 text-sm mt-1 flex items-center justify-center md:justify-start gap-1">
+                            <i class="fas fa-heart text-red-500"></i>
+                            Pioneering educational technology solutions from India
+                        </p>
                     </div>
                     
-                    <!-- App Store Badges -->
-                    <div class="pt-4">
-                        <p class="text-sm text-gray-400 mb-2">Download Our Mobile App</p>
-                        <div class="flex gap-3">
-                            <a href="#" class="flex-1 bg-gray-800 hover:bg-gray-700 rounded-lg p-3 flex items-center gap-2 transition-colors">
-                                <i class="fab fa-apple text-xl"></i>
-                                <div class="text-xs">
-                                    <div>Download on the</div>
-                                    <div class="font-bold">App Store</div>
-                                </div>
-                            </a>
-                            <a href="#" class="flex-1 bg-gray-800 hover:bg-gray-700 rounded-lg p-3 flex items-center gap-2 transition-colors">
-                                <i class="fab fa-google-play text-xl"></i>
-                                <div class="text-xs">
-                                    <div>Get it on</div>
-                                    <div class="font-bold">Google Play</div>
-                                </div>
-                            </a>
+                    <!-- Legal Links -->
+                    <div class="flex flex-wrap gap-6 justify-center">
+                        <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-xs"></i>
+                            Privacy Framework
+                        </a>
+                        <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1">
+                            <i class="fas fa-file-contract text-xs"></i>
+                            Terms of Service
+                        </a>
+                        <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1">
+                            <i class="fas fa-cookie-bite text-xs"></i>
+                            Cookie Policy
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Trust Badges -->
+                <div class="mt-8 pt-8 border-t border-gray-800">
+                    <div class="flex flex-wrap justify-center gap-8">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-green-400 mb-1">15+</div>
+                            <div class="text-xs text-gray-400">Years of Excellence</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-blue-400 mb-1">3,500+</div>
+                            <div class="text-xs text-gray-400">Institutional Partners</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-purple-400 mb-1">99.9%</div>
+                            <div class="text-xs text-gray-400">Platform Uptime</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-yellow-400 mb-1">24/7</div>
+                            <div class="text-xs text-gray-400">Technical Support</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Divider -->
-        <div class="border-t border-gray-800 pt-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <!-- Copyright -->
-                <div class="text-center md:text-left">
-                    <p class="text-gray-400 text-sm">
-                        © 2026 <span class="text-blue-400 font-semibold">School Club ERP Software</span>. All rights reserved.
-                    </p>
-                    <p class="text-gray-500 text-sm mt-1 flex items-center justify-center md:justify-start gap-1">
-                        <i class="fas fa-heart text-red-500"></i>
-                        Made with passion in India • Serving global educational institutions
-                    </p>
-                </div>
-                
-                <!-- Legal Links -->
-                <div class="flex flex-wrap gap-6 justify-center">
-                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1">
-                        <i class="fas fa-shield-alt text-xs"></i>
-                        Privacy Policy
-                    </a>
-                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1">
-                        <i class="fas fa-file-contract text-xs"></i>
-                        Terms of Service
-                    </a>
-                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1">
-                        <i class="fas fa-cookie-bite text-xs"></i>
-                        Cookie Policy
-                    </a>
-                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1">
-                        <i class="fas fa-balance-scale text-xs"></i>
-                        Legal
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Trust Badges -->
-            <div class="mt-8 pt-8 border-t border-gray-800">
-                <div class="flex flex-wrap justify-center gap-8">
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-green-400 mb-1">15+</div>
-                        <div class="text-xs text-gray-400">Years Experience</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-blue-400 mb-1">3,500+</div>
-                        <div class="text-xs text-gray-400">Schools Trust Us</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-purple-400 mb-1">99.9%</div>
-                        <div class="text-xs text-gray-400">Uptime SLA</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-yellow-400 mb-1">24/7</div>
-                        <div class="text-xs text-gray-400">Support</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Back to Top -->
-            <div class="mt-8 text-center">
-                <a href="#home" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors group">
-                    <i class="fas fa-arrow-up group-hover:-translate-y-1 transition-transform"></i>
-                    Back to Top
-                </a>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <!-- AOS Animation -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
     
-   
+    <!-- JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Scroll Progress Bar
+        window.onscroll = function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("scrollProgress").style.width = scrolled + "%";
+            
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-active');
+            } else {
+                navbar.classList.remove('navbar-active');
+            }
+        };
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('demoForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Show success message
+            alert('Thank you for your interest! Our solutions team will contact you within 2 business hours to schedule your institutional demonstration.');
+            this.reset();
+        });
+
+        // Mobile menu handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.dropdown input[type="checkbox"]');
+            const mobileMenuLinks = document.querySelectorAll('.dropdown a');
+            
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if(mobileMenuToggle) {
+                        mobileMenuToggle.checked = false;
+                    }
+                });
+            });
+        });
+    </script>
 </body>
-</html>  
+</html>
