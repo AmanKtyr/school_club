@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initApplication();
 });
 
+
+
 /**
  * Initialize Application
  */
@@ -30,6 +32,9 @@ function initApplication() {
     
     // Initialize Chat Widget
     initChatWidget();
+
+    // Initialize Testimonial Slider
+    initTestimonialSlider();
     
     // Add performance monitoring
     monitorPerformance();
@@ -606,6 +611,39 @@ function monitorPerformance() {
             console.warn(`High CLS detected: ${clsValue}`);
         }
     });
+}
+
+/**
+ * Initialize Testimonial Slider
+ */
+function initTestimonialSlider() {
+    if (typeof Swiper !== 'undefined') {
+        new Swiper('.testimonial-slider', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 40,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 50,
+                },
+            }
+        });
+    } else {
+        console.warn('Swiper library not loaded');
+    }
 }
 
 /**

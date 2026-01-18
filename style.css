@@ -1,12 +1,7 @@
-/* Custom CSS for icon toggling in mobile menu */
-details[open] > summary #menuIcon {
-    display: none;
+.testimonial-slider .swiper-pagination-bullet {
+    background-color: #fbbf24;
 }
 
-details:not([open]) > summary #closeIcon {
-    display: none;
-}
-
-details[open] > summary #closeIcon {
-    display: inline-block;
+.testimonial-slider .swiper-pagination-bullet-active {
+    background-color: #f59e0b;
 }
