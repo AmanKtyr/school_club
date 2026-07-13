@@ -556,29 +556,29 @@
                     <div class="wow fadeIn" data-wow-delay="0.5s">
                         <h2 class="fw-bold mb-3" style="color: #001064; font-family: 'Roboto Slab', serif;">Book Your Personalized Demo</h2>
                         <p class="text-muted mb-5">Fill out the form below, and one of our specialists will contact you.</p>
-                        <form>
+                        <form onsubmit="sendIndexWhatsApp(event)">
                             <div class="row g-3">
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control border-1 border-light bg-light" id="schoolName" placeholder="Institution Name *" style="border-radius: 5px;">
+                                        <input type="text" class="form-control border-1 border-light bg-light" id="schoolName" placeholder="Institution Name *" style="border-radius: 5px;" required>
                                         <label for="schoolName" class="text-muted">Institution Name *</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control border-1 border-light bg-light" id="contactPerson" placeholder="Contact Person *" style="border-radius: 5px;">
+                                        <input type="text" class="form-control border-1 border-light bg-light" id="contactPerson" placeholder="Contact Person *" style="border-radius: 5px;" required>
                                         <label for="contactPerson" class="text-muted">Contact Person *</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3">
-                                        <input type="email" class="form-control border-1 border-light bg-light" id="email" placeholder="Professional Email *" style="border-radius: 5px;">
+                                        <input type="email" class="form-control border-1 border-light bg-light" id="email" placeholder="Professional Email *" style="border-radius: 5px;" required>
                                         <label for="email" class="text-muted">Professional Email *</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control border-1 border-light bg-light" id="phone" placeholder="Contact Number *" style="border-radius: 5px;">
+                                        <input type="text" class="form-control border-1 border-light bg-light" id="phone" placeholder="Contact Number *" style="border-radius: 5px;" required>
                                         <label for="phone" class="text-muted">Contact Number *</label>
                                     </div>
                                 </div>
@@ -601,11 +601,32 @@
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100 py-3 text-white shadow-lg" type="submit">
-                                        <i class="fa fa-calendar-check me-2"></i> Request My Free Demo
+                                        <i class="fab fa-whatsapp me-2"></i> Request Demo on WhatsApp
                                     </button>
                                 </div>
                             </div>
                         </form>
+                        <script>
+                            function sendIndexWhatsApp(e) {
+                                e.preventDefault();
+                                var school = document.getElementById('schoolName').value;
+                                var person = document.getElementById('contactPerson').value;
+                                var email = document.getElementById('email').value;
+                                var phone = document.getElementById('phone').value;
+                                var enrollment = document.getElementById('enrollment').options[document.getElementById('enrollment').selectedIndex].text;
+                                var reqs = document.getElementById('requirements').value;
+                                
+                                var text = "Hello School Club! New Demo Request from Homepage:%0A%0A" + 
+                                           "*Institution:* " + school + "%0A" + 
+                                           "*Contact Person:* " + person + "%0A" + 
+                                           "*Email:* " + email + "%0A" + 
+                                           "*Phone:* " + phone + "%0A" + 
+                                           "*Students:* " + enrollment + "%0A" + 
+                                           "*Requirements:* " + reqs;
+                                           
+                                window.open("https://wa.me/919839303349?text=" + text, "_blank");
+                            }
+                        </script>
                     </div>
                 </div>
             </div>
