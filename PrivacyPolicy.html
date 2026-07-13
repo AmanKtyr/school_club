@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - SchoolClub.in</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: #ffffff;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><polygon points="0,0 1000,0 1000,100 0,80"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .privacy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 15px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            padding: 40px;
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .contact-info {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        .contact-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 12px;
+        }
+
+        .contact-item i {
+            color: var(--secondary-color);
+            width: 20px;
+            text-align: center;
+        }
+
+        .table-of-contents {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            border: 2px solid var(--border-color);
+        }
+
+        .table-of-contents h4 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .table-of-contents ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .table-of-contents li {
+            margin-bottom: 10px;
+        }
+
+        .table-of-contents a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .table-of-contents a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .last-updated {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .important-notice {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 0 40px;
+            }
+            
+            .section-card {
+                padding: 25px;
+            }
+            
+            .privacy-container {
+                padding: 40px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="display-4 fw-bold mb-4">Privacy Policy</h1>
+                <p class="lead mb-0">Your privacy is important to us. Learn how we protect and handle your personal information.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="privacy-container">
+        <div class="last-updated">
+            <i class="fas fa-calendar-alt me-2"></i>
+            Last Updated: July 13, 2025
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="table-of-contents">
+            <h4><i class="fas fa-list me-2"></i>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">1. Overview</a></li>
+                <li><a href="#information-we-collect">2. Information We Collect</a></li>
+                <li><a href="#how-we-use-information">3. How We Use Information</a></li>
+                <li><a href="#information-sharing">4. Information Sharing</a></li>
+                <li><a href="#data-security">5. Data Security</a></li>
+                <li><a href="#cookies">6. Cookies and Tracking</a></li>
+                <li><a href="#childrens-privacy">7. Children's Privacy</a></li>
+                <li><a href="#user-rights">8. Your Rights</a></li>
+                <li><a href="#data-retention">9. Data Retention</a></li>
+                <li><a href="#changes">10. Changes to This Policy</a></li>
+                <li><a href="#contact">11. Contact Information</a></li>
+            </ul>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="overview" class="section-card">
+            <h2 class="section-title">
+                <i class="fas fa-info-circle"></i>
+                1. Overview
+            </h2>
+            <p>Welcome to SchoolClub.in ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our educational services.</p>
+            
+            <div class="highlight-box">
+                <strong>Key Points:</strong>
+                <ul class="mb-0 mt-2">
+                    <li>We collect only necessary information to provide our services</li>
+                    <li>We never sell your personal information to third parties</li>
+                    <li>We implement industry-standard security measures</li>
+                    <li>You have control over your personal information</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Information We Collect -->
+        <div id="information-we-collect" class="section-card">
+            <h2 class="section-title">
+                <i class="fas fa-database"></i>
+                2. Information We Collect
+            </h2>
+            
+            <h4>Personal Information</h4>
+            <p>We may collect the following types of personal information:</p>
+            <ul>
+                <li><strong>Account Information:</strong> Name, email address, phone number, and password</li>
+                <li><strong>Profile Information:</strong> Grade level, school name, subjects of interest</li>
+                <li><strong>Educational Data:</strong> Learning progress, quiz scores, assignment submissions</li>
+                <li><strong>Communication Data:</strong> Messages sent through our platform, support requests</li>
+            </ul>
+
+            <h4>Automatically Collected Information</h4>
+            <ul>
+                <li><strong>Device Information:</strong> IP address, browser type, operating system</li>
+                <li><strong>Usage Data:</strong> Pages visited, time spent on site, click patterns</li>
+                <li><strong>Location Data:</strong> General geographic location (city/country level)</li>
+            </ul>
+        </div>
+
+        <!-- How We Use Information -->
+        <div id="how-we-use-information" class="section-card">
+            <h2 class="section-title">
+                <i class="fas fa-cogs"></i>
+                3. How We Use Information
+            </h2>
+            
+            <p>We use your information for the following purposes:</p>
+            
+            <h4>Service Provision</h4>
+            <ul>
+                <li>Create and manage your account</li>
+                <li>Provide educational content and resources</li>
+                <li>Track learning progress and performance</li>
+                <li>Facilitate communication between users</li>
+            </ul>
+
+            <h4>Improvement and Analytics</h4>
+            <ul>
+                <li>Analyze usage patterns to improve our services</li>
+                <li>Conduct research on educational effectiveness</li>
+                <li>Develop new features and content</li>
+            </ul>
+
+            <h4>Communication</h4>
+            <ul>
+                <li>Send important service updates</li>
+                <li>Provide customer support</li>
+                <li>Send educational newsletters (with your consent)</li>
+            </ul>
+        </div>
+
+        <!-- Information Sharing -->
+        <div id="information-sharing" class="section-card">
+            <h2 class="section-title">
+                <i class="fas fa-share-alt"></i>
+                4. Information Sharing
+            </h2>
+            
+            <div class="important-notice">
+                <i class="fas fa-shield-alt me-2"></i>
+                We do not sell, trade, or rent your personal information to third parties.
+            </div>
+
+            <p>We may share your information only in the following circumstances:</p>
+            
+            <h4>Service Providers</h4>
+            <p>We may share information with trusted third-party service providers who assist us in:</p>
+            <ul>
+                <li>Website hosting and maintenance</li>
+                <li>Payment processing</li>
+                <li>Analytics and performance monitoring</li>
+                <li>Customer support services</li>
+            </ul>
+
+            <h4>Legal Requirements</h4>
+            <p>We may disclose information when required by law or to:</p>
+            <ul>
+                <li>Comply with legal obligations</li>
+                <li>Protect our rights and property</li>
+                <li>Ensure user safety</li>
+                <li>Prevent fraud or abuse</li>
+            </ul>
+        </div>
+
+        <!-- Data Security -->
+        <div id="data-security" class="section-card">
+            <h2 class="section-title">
+                <i class="fas fa-lock"></i>
+                5. Data Security
+            </h2>
+            
+            <p>We implement comprehensive security measures to protect your information:</p>
+            
+            <h4>Technical Safeguards</h4>
+            <ul>
+                <li><strong>Encryption:</strong> All data transmission is encrypted using SSL/TLS</li>
+                <li><strong>Secure Storage:</strong> Data is stored on secure servers with restricted access</li>
+                <li><strong>Regular Updates:</strong> Security systems are regularly updated and monitored</li>
+                <li><strong>Access Controls:</strong> Strict access controls limit who can view your information</li>
+            </ul>
+
+            <h4>Administrative Safeguards</h4>
+            <ul>
+                <li>Employee training on data protection</li>
+                <li>Regular security audits and assessments</li>
+                <li>Incident response procedures</li>
+                <li>Privacy by design principles</li>
+            </ul>
+        </div>
+
+        <!-- Cookies and Tracking -->
+        <div id="cookies" class="section-card">
+            <h2 class="section-title">
+                <i class="fas fa-cookie-bite"></i>
+                6. Cookies and Tracking
+            </h2>
+            
+            <p>We use cookies and similar technologies to enhance your experience:</p>
+            
+            <h4>Types of Cookies</h4>
+            <ul>
+                <li><strong>Essential Cookies:</strong> Required for basic website functionality</li>
+                <li><strong>Performance Cookies:</strong> Help us understand how you use our site</li>
+                <li><strong>Functional Cookies:</strong> Remember your preferences and settings</li>
+                <li><strong>Analytics Cookies:</strong> Provide insights into user behavior</li>
+            </ul>
+
+            <h4>Managing Cookies</h4>
+            <p>You can control cookies through your browser settings. However, disabling certain cookies may affect website functionality.</p>
+        </div>
+
+        <!-- Children's Privacy -->
+        <div id="childrens-privacy" class="section-card">
+            <h2 class="section-title">
+                <i class="fas fa-child"></i>
+                7. Children's Privacy
+            </h2>
+            
+            <div class="highlight-box">
+                <strong>COPPA Compliance:</strong> We comply with the Children's Online Privacy Protection Act (COPPA) and similar international regulations.
+            </div>
+
+            <h4>Children Under 13</h4>
+            <ul>
+                <li>We do not knowingly collect personal information from children under 13 without parental consent</li>
+                <li>If we discover we have collected information from a child under 13, we will delete it immediately</li>
+                <li>Parents can review, update, or delete their child's information by contacting us</li>
+            </ul>
+
+            <h4>Educational Context</h4>
+            <ul>
+                <li>We may collect information from students for educational purposes with school consent</li>
+                <li>Educational records are protected under FERPA guidelines</li>
+                <li>Parents have the right to access their child's educational information</li>
+            </ul>
+        </div>
+
+        <!-- User Rights -->
+        <div id="user-rights" class="section-card">
+            <h2 class="section-title">
+                <i class="fas fa-user-shield"></i>
+                8. Your Rights
+            </h2>
+            
+            <p>You have the following rights regarding your personal information:</p>
+            
+            <h4>Access and Portability</h4>
+            <ul>
+                <li>Request a copy of your personal information</li>
+                <li>Export your data in a portable format</li>
+                <li>Access your account information at any time</li>
+            </ul>
+
+            <h4>Correction and Deletion</h4>
+            <ul>
+                <li>Update or correct inaccurate information</li>
+                <li>Request deletion of your personal information</li>
+                <li>Deactivate your account</li>
+            </ul>
+
+            <h4>Control and Consent</h4>
+            <ul>
+                <li>Opt-out of marketing communications</li>
+                <li>Withdraw consent for data processing</li>
+                <li>Control privacy settings in your account</li>
+            </ul>
+        </div>
+
+        <!-- Data Retention -->
+        <div id="data-retention" class="section-card">
+            <h2 class="section-title">
+                <i class="fas fa-calendar-times"></i>
+                9. Data Retention
+            </h2>
+            
+            <p>We retain your information for the following periods:</p>
+            
+            <h4>Active Accounts</h4>
+            <ul>
+                <li>Account information: Retained while account is active</li>
+                <li>Learning data: Retained for educational continuity</li>
+                <li>Communication records: Retained for 2 years</li>
+            </ul>
+
+            <h4>Inactive Accounts</h4>
+            <ul>
+                <li>Account data: Deleted after 3 years of inactivity</li>
+                <li>Anonymous analytics: May be retained longer for research</li>
+                <li>Legal requirements: Retained as required by law</li>
+            </ul>
+        </div>
+
+        <!-- Changes to Policy -->
+        <div id="changes" class="section-card">
+            <h2 class="section-title">
+                <i class="fas fa-edit"></i>
+                10. Changes to This Policy
+            </h2>
+            
+            <p>We may update this Privacy Policy from time to time. When we do:</p>
+            
+            <ul>
+                <li>We will post the updated policy on this page</li>
+                <li>We will update the "Last Updated" date</li>
+                <li>We will notify you of significant changes via email</li>
+                <li>Continued use of our services constitutes acceptance of changes</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>Stay Informed:</strong> We recommend reviewing this policy periodically to stay informed about how we protect your information.
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div id="contact" class="contact-info">
+            <h4><i class="fas fa-envelope me-2"></i>Contact Information</h4>
+            <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
+            
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span><strong>Email:</strong> privacy@schoolclub.in</span>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span><strong>Support Email:</strong> support@schoolclub.in</span>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-globe"></i>
+                <span><strong>Website:</strong> https://schoolclub.in</span>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><strong>Location:</strong> India</span>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <span><strong>Response Time:</strong> We aim to respond within 48 hours</span>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-headset"></i>
+                <span><strong>Support:</strong> 24/7 Customer Support Available</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for table of contents links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight current section in table of contents
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section-card');
+            const navLinks = document.querySelectorAll('.table-of-contents a');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
