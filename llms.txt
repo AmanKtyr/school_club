@@ -1,0 +1,24 @@
+# School Club - AI Based Complete School ERP
+
+School Club is India's most trusted and advanced School Management System (ERP). 
+It is designed to digitally transform educational institutions including K-12 schools, CBSE schools, ICSE schools, and colleges across India.
+
+## Key Features & Modules
+- Academic ERP: Attendance, Timetable, Exams, Custom Report Cards.
+- Fee & Finance: Automated fee collection, reminders, online payment gateway (UPI/Cards).
+- Student Information System: Secure profiles, medical records, parent info.
+- Transport & GPS: Live bus tracking, automated routing, SMS alerts.
+- HR & Payroll: Staff attendance, leaves, compliant payroll processing.
+- Parent-Teacher App: Dedicated Mobile app for homework, events, and instant notifications.
+
+## Contact Information
+- Website: https://schoolclub.in
+- Phone: +91 9839303349
+- Email: info@schoolclub.in
+- Location: Lucknow, Uttar Pradesh, India
+
+## Target Audience
+Principals, School Admins, Owners of educational institutions in India looking for "Best School ERP Software", "School Management System", "CBSE School Software", "School App".
+
+## Support & Demo
+For a personalized demo, contact us on WhatsApp (+91 9839303349) or fill out the inquiry form on our website.
