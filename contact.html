@@ -132,38 +132,55 @@
                     <p class="mb-4">Our dedicated team of education technology specialists is ready to help you discover
                         how School Club can elevate your institution's operational efficiency. Drop us a message below
                         and we'll get back to you within 24 hours.</p>
-                    <form>
+                    <form onsubmit="sendWhatsApp(event)">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name" required>
                                     <label for="name">Your Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email" required>
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <input type="text" class="form-control" id="subject" placeholder="Subject" required>
                                     <label for="subject">Subject</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a message here" id="message"
-                                        style="height: 100px"></textarea>
+                                        style="height: 100px" required></textarea>
                                     <label for="message">Message</label>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button>
+                                <button class="btn btn-primary py-3 px-5" type="submit"><i class="fab fa-whatsapp me-2"></i>Send on WhatsApp</button>
                             </div>
                         </div>
                     </form>
+                    <script>
+                        function sendWhatsApp(e) {
+                            e.preventDefault();
+                            var name = document.getElementById('name').value;
+                            var email = document.getElementById('email').value;
+                            var subject = document.getElementById('subject').value;
+                            var message = document.getElementById('message').value;
+                            
+                            var text = "Hello School Club! New inquiry from Website:%0A%0A" + 
+                                       "*Name:* " + name + "%0A" + 
+                                       "*Email:* " + email + "%0A" + 
+                                       "*Subject:* " + subject + "%0A" + 
+                                       "*Message:* " + message;
+                                       
+                            window.open("https://wa.me/919839303349?text=" + text, "_blank");
+                        }
+                    </script>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 450px;">
                     <div class="position-relative overflow-hidden h-100">
